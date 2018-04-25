@@ -6,7 +6,7 @@ module.exports = (bot, guild, member) => {
   console.log(`${member.username} was banned from ${guild.name} for ${reason}!`)
   member.send(`${member.username}, you are now banned from ${guild.name} for the reason ${reason}!`)
   } else {
-    console.log(`${member.username}, you are now banned from ${guild.name}`)
+    console.log(`${member.username} was banned from ${guild.name}.`)
     member.send(`${member.username}, you are now banned from ${guild.name}!`)
   }
   let log = guild.channels.find('name', 'guild-bot-log')
