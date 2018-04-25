@@ -8,7 +8,7 @@ module.exports.run = (bot, message, args, discord) => {
  if (message.author.id == process.env.oid) {
   let guild_list = []
   bot.guilds.forEach(async(guild, id) => {
-    guild_list.push(`      ${guild.name}  ${id}\n`)
+    guild_list.push(`${guild.name} ${id}\n`)
   })
   let embed = new discord.RichEmbed()
     .setTitle(`Hulkbot Debugger`)
@@ -21,11 +21,9 @@ module.exports.run = (bot, message, args, discord) => {
 🆔 **Bot ID:** ${bot.user.id}\n
 🚀 **Memory Usage:** ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB\n
 🖍 **Bot Prefix:** ${config.prefix}\n
-🔎 **I know:**\n -   ${bot.guilds.array().length} Guilds\n -   ${bot.channels.array().length} Channels\n -   ${bot.users.array().length} Users\n
-⌛ **Uptime:** ${Math.round(bot.uptime / (1000 * 60 * 60))} hours, ${Math.round(bot.uptime / (1000 * 60)) % 60}  minutes, ${Math.round(bot.uptime / 1000) % 60} seconds.\n
-🔊 **Status Updates:** [#${config.statues.length}]\n      ${config.statues.join("\n   ")}\n`)
-  .addField(`📝 **Guilds I Know:** [#${bot.guilds.array().length}]\n${guild_list}`)
-  message.channel.send({ embed })
+🔎 **I know:**\n -   ${bot.guilds.size} Guilds\n -   ${bot.channels.size} Channels\n -   ${bot.users.size} Users\n
+⌛ **Uptime:** ${Math.round(bot.uptime / (1000 * 60 * 60))} hours, ${Math.round(bot.uptime / (1000 * 60)) % 60}  minutes, ${Math.round(bot.uptime / 1000) % 60} seconds.\n\n`)
+  message.channel.send({embed: embed})
 } else {
   message.channel.send("Nope!")
 } 
