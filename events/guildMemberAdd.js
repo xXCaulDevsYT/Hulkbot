@@ -53,7 +53,9 @@ module.exports = (bot, member) => {
             member.addRole(autoroles.fhgrole)
          } else {
             if (member.guild.id == autoroleguilds.if) {
-               member.addRole(autoroles.ifrole)
+               setTimeout(() => {
+                  member.addRole(autoroles.ifrole)
+               }, 300000)
             }
          }
       }
