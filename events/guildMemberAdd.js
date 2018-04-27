@@ -2,6 +2,7 @@ module.exports = (bot, member) => {
    let guildids = ["318532861638737931", "264445053596991498",  "110373943822540800"],
    donowelcome = ["318532861638737931", "349661783612719119"],
    autoroles = {
+      "ifrole": "439514265250955275",
       "robloxlovers": "428953426840256513",
       "learning": "434070145397161986",
       "fhgrole": "360975611638054922",
@@ -10,6 +11,7 @@ module.exports = (bot, member) => {
       "rlbotrole": "431520359494189057"
    },
    autoroleguilds = {
+     "if": "439513692162490370",
      "rl": "426909155832365066",
      "rd": "419160188541599744",
      "fhg": "358279862324166659"
@@ -49,6 +51,10 @@ module.exports = (bot, member) => {
                member.addRole(autoroles.fhgbotrole)
             }
             member.addRole(autoroles.fhgrole)
+         } else {
+            if (member.guild.id == autoroleguilds.if) {
+               member.addRole(autoroles.ifrole)
+            }
          }
       }
    }
