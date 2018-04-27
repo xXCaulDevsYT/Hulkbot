@@ -23,14 +23,15 @@ module.exports = (bot, member) => {
    if (guildids.includes(member.guild.id)) {
       return;
    } else {
-   console.log(`${member.displayName} just joined ${member.guild.name}`);
    // SOON: member.send(`Welcome to ${member.guild.name}, ${member.displayName}!`);
    const channel = member.guild.channels.find('name', 'welcome');
    if (!channel) return;
-      if (member.displayName) {
-         channel.send(`Welcome to ${member.guild.name}, ${member.username}!`)
+      if (!member.displayName) {
+         channel.send(`Welcome to ${member.guild.name}, ${member.user.username}!`);
+         console.log(`${member.user.username} just joined ${member.guild.name}`);
       } else {
          channel.send(`Welcome to ${member.guild.name}, ${member.displayName}!`); 
+         console.log(`${member.displayName} just joined ${member.guild.name}`);
       }
    }
    
