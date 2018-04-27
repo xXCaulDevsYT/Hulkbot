@@ -20,5 +20,8 @@ module.exports = (bot, guild, member) => {
   embed.setThumbnail(member.avatarURL)
   embed.setColor("RED")
   embed.setFooter(`${member.username} was banned`)
-  embed.setTimestamp() 
+  embed.setTimestamp()
+  if (log) {
+    log.send({embed: embed})
+  } else return console.warn(`Guild ${guild.name} has no log channel, canceling send.`);
 }
