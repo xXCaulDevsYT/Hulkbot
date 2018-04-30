@@ -1,6 +1,6 @@
 module.exports.run = (bot, message, args, discord) => {
-	if (!args) return message.channel.send("You need to mention someone.");
 	let member = message.mentions.members.first();
+	if (!member) return message.channel.send("You need to mention someone.");
 	let embed = new discord.RichEmbed()
 	.setTitle(`BORK!`)
 	.setImage(`https://orig00.deviantart.net/3bd3/f/2015/141/0/5/bork_by_chiibe-d8u6uv3.gif`)
