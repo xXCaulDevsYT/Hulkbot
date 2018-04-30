@@ -3,6 +3,7 @@ module.exports = (bot, member) => {
    donowelcome = ["318532861638737931", "349661783612719119"],
    autoroles = {
       "ifrole": "439514265250955275",
+      "ifbotrole": "440342710914646028",
       "robloxlovers": "428953426840256513",
       "learning": "434070145397161986",
       "fhgrole": "360975611638054922",
@@ -54,6 +55,9 @@ module.exports = (bot, member) => {
             member.addRole(autoroles.fhgrole)
          } else {
             if (member.guild.id == autoroleguilds.if) {
+               if (member.user.bot) {
+                  member.addRole(autoroles.ifbotrole)
+               }
                setTimeout(() => {
                   member.addRole(autoroles.ifrole)
                }, 300000)
