@@ -10,6 +10,6 @@ module.exports.run = (bot, message, args, discord) => {
 	message.channel.send({ embed });
 }
 
-module.exports.help = {
-	name: "bork",
+module.exports.help = { 
+	name: "bork"
 }
