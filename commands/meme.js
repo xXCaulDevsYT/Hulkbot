@@ -1,16 +1,17 @@
 module.exports.run = (bot, message, args, discord) => {
-  const m = require('automeme')
-  m.getMeme('text', 1, (err, meme) => {
-    if (err) {
-      message.channel.send("I couldn't get a meme...")
-      return console.error(err)
-    }
+  require('snekfetch').get('https://meme-api.explosivenight.us/v1/random/?type=json')
+  .then(response => {
     let em = new discord.RichEmbed()
-    .setTitle("Hulkbot Meme Generator")
-    .setDescription("Here's a random meme!")
-    .setImage(meme)
-    .setFooter(new Date().toString())
-    message.channel.send(em)
+    .setTitle("Hulkbot Random Memes")
+    .setImage(response.body.url)
+    .setDescription("I got a meme for you!")
+    .setTimestamp()
+    .setFooter("Random Meme!")
+    if (response.body.status == "200 OK") {
+      message.channel.send({embed: em})
+    } else {
+      message.channel.send("I couldn't get a meme...")
+    }
   })
 }
 
