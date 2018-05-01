@@ -8,7 +8,8 @@ module.exports.run = (bot, message, args, discord) => {
     .then(response => {
       if (response.body.status == "ok") {
         m.edit(`Done! I found ${member.user.username} on ROBLOX! His/her username is ${response.body.robloxUsername}, and his/her ID is ${response.body.robloxId}.`)
-      } else {
+      } 
+      if (response.body.status == "error") {
         m.edit(`I couldn't find ${member.user.username} on ROBLOX...`)
       }
     })
