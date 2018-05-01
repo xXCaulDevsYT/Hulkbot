@@ -6,7 +6,11 @@ module.exports.run = (bot, message, args, discord) => {
     message.channel.send(`Okay, now looking up ${member.user.username} on ROBLOX...`).then(m => {
     snekfetch.get(`https://verify.eryn.io/api/user/${member.id}`)
     .then(response => {
-      m.edit(`Done! I found ${member.user.username} on ROBLOX! His/her username is ${response.body.robloxUsername}, and his/her ID is ${response.body.robloxId}.`)
+      if (response.body.status == "ok") {
+        m.edit(`Done! I found ${member.user.username} on ROBLOX! His/her username is ${response.body.robloxUsername}, and his/her ID is ${response.body.robloxId}.`)
+      } else {
+        m.edit(`I couldn't find ${member.user.username} on ROBLOX...`)
+      }
     })
   })
 }
