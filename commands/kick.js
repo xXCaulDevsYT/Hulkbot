@@ -8,7 +8,7 @@ module.exports.run = (bot, message, args, discord) => {
  let reason = args.slice(1).join(' ')
  let embed = new discord.RichEmbed()
  .setTitle(`${bot.user.username} Kick System`)
- .setDescription(`${member.username} was kicked for the reason ${reason}`)
+ .setDescription(`${member.user.username} was kicked for the reason ${reason}`)
  if (member.displayName) {
    embed.setDescription(`${member.displayName} was kicked for the reason ${reason}`)
  }
@@ -21,7 +21,7 @@ module.exports.run = (bot, message, args, discord) => {
    
     member.kick(reason).then(channel.send({ embed })).catch(err => {
       console.error(err)
-      baselogger(bot, `A kick failed in the guild ${member.guild.name}. Attempting to kick: ${member.username}. Error Message: ${err}`, message.guild.iconURL)
+      baselogger(bot, `A kick failed in the guild ${member.guild.name}. Attempting to kick: ${member.user.username}. Error Message: ${err}`, message.guild.iconURL)
     })
   } else {
     message.channel.send("You don't have permission to kick people. If there's someone who needs to be kicked, contact an administrator or a moderator.")
