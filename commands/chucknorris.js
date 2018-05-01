@@ -8,7 +8,7 @@ module.exports.run = (bot, message, args, discord) => {
       .setDescription(response.body.value)
       .setColor("RANDOM")
       .setThumbnail(response.body.icon_url)
-      message.channel.send({ em })
+      message.channel.send({embed: em})
   })
 }
 
