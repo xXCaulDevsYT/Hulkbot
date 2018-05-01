@@ -8,7 +8,7 @@ let params = encodeURIComponent(args.join(' '));
     .addField(result.body.0["Name"])
   })
 }
-
+*/
 module.exports.help = {
   name: "catalogsearch"
-} */
+}
