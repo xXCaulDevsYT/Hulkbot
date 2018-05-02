@@ -18,7 +18,7 @@ module.exports.run = (bot, message, args, suffix, discord) => {
     },
            {
       name: ":lollipop: Fun:",
-      value: `\`\`\`ini\navatar = "Fetches an HD Image of a user!"\nbork = "Bork someone for fun!"\ncoinflip = "Heads or Tails!"\nsay = "Want me to say something?"\nmyid = "Need your own ID?"\nserverid = "Need the Server's ID?"\nyomomma = "YOMOMMA!"\nknockknock = "I'll get you a knock knock joke."\nadvice = "I'll get you some good advice, so apply it to your life boi."\nchucknorris = "I'll get you a random chuck norris joke."\`\`\``,
+      value: `\`\`\`ini\navatar = "Fetches an HD Image of a user!"\nbork = "Bork someone for fun!"\ncoinflip = "Heads or Tails!"\nsay = "Want me to say something?"\nmyid = "Need your own ID?"\nserverid = "Need the Server's ID?"\nyomomma = "YOMOMMA!"\nknockknock = "I'll get you a knock knock joke."\nadvice = "I'll get you some good advice, so apply it to your life boi."\nchucknorris = "I'll get you a random chuck norris joke."\nwhois = "I'll look a user up on roblox for you."\nmeme = "I'll get a random meme for you."\`\`\``,
     },
     {
       name: ":musical_note: Music:",
@@ -36,7 +36,7 @@ module.exports.run = (bot, message, args, suffix, discord) => {
     if (au == oid) {
       fields.push({
         name: ":medal: Owner:",
-	value: `\`\`\`ini\nshutdown = "Shutdown the Bot!"\nchangegame = "Change the bot's playing status."\neval = "Execute some JavaScript from inside Discord!"\nonbot = "Change the bots status to Online!"\nidlebot = "Change the bots status to Idle!"\ndnd = "Change the bots status to Do Not Disturb."\ninvbot = "Change the bots status to Invisible!"\ndebug = "See some advanced info about the bot."\nmshutdown = "Shutdown the music portion of the bot."\nmrestart = "Restart the music portion of the bot."\nsetavatar = "Set the bot's avatar"\nsetnick = "Set the nickname of the bot."\ngeninvite = "Generate an invite for any server the bot is in."\`\`\``,
+	value: `\`\`\`ini\nshutdown = "Shutdown the Bot!"\nchangegame = "Change the bot's playing status."\neval = "Execute some JavaScript from inside Discord!"\nonbot = "Change the bots status to Online!"\nidlebot = "Change the bots status to Idle!"\ndnd = "Change the bots status to Do Not Disturb."\ninvbot = "Change the bots status to Invisible!"\ndebug = "See some advanced info about the bot."\nmshutdown = "Shutdown the music portion of the bot."\nmrestart = "Restart the music module of the bot."\nsetavatar = "Set the bot's avatar"\nsetnick = "Set the nickname of the bot."\ngeninvite = "Generate an invite for any server the bot is in."\`\`\``,
         inline: false
       });
     } else {
