@@ -145,3 +145,5 @@ bot.on("guildDelete", (guild) => {
 });
 
 bot.login(process.env.botToken); 
+
+exports.date = time
