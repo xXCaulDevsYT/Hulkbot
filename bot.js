@@ -12,7 +12,8 @@ bot = new discord.Client(),
 prefix = process.env.prefix,
 {baselogger} = require('./logger.js'),
 result = Math.round(Math.random()),
-updates = ["Rebuffed Hackban where it'll now reject any number that is not a valid ID."]
+updates = ["Rebuffed Hackban where it'll now reject any number that is not a valid ID."],
+webhookchannelid = "441710517460008960"
 config.updates = updates.join(' ')
 var filteron = "false",
 cleverbot = require('cleverbot.io'),
@@ -53,7 +54,7 @@ bot.on("guildBanAdd", (guild, member) => require('./events/BanAdd.js')(bot, guil
 //bot.on("guildBanRemove", (guild, member) => require('./events/BanRemove.js')(bot, guild, member))
  
 bot.on("message", message => {
-  if (filteron == "true") {
+ if (filteron == "true") {
     for (x = 0; x < profanities.length; x++) {
       if (message.cleanContent.toLowerCase().includes(profanities[x].toLowerCase())) {
         console.log(`[Profanity] ${message.author.username}, said ${profanities[x]} in the ${message.channel.name} channel!`);
