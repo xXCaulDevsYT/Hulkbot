@@ -9,8 +9,7 @@ module.exports = (bot) => {
       console.log("Test successful!")
     } else {
       if (vote.type == "upvote") {
-        bot.channels.get('441710517460008960')
-        .send(`${vote.user} just upvoted <@${vote.bot}>!`)
+        bot.channels.get('441710517460008960').send(`${vote.user} just upvoted <@${vote.bot}>!`)
       }
     }
     // Do what you need to do 
