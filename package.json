@@ -9,6 +9,7 @@
      "start": "node bot.js"
 },
      "dependencies": {
+          "dblapi.js": "^2.0.1",
           "node-opus": "^0.2.7",
           "pornhub": "^0.0.5",
           "mysql": "^2.15.0",
