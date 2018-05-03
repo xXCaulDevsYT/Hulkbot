@@ -67,19 +67,20 @@ bot.on("message", message => {
 
   let mArray = message.content.split(" ");
   let args = mArray.slice(1);
+  let loggedcmd = mArray[0].slice(prefix.length)
 
-  let cmd = bot.commands.get(mArray[0].slice(prefix.length));
+  let cmd = bot.commands.get(loggedcmd);
   if (message.author.bot) return;
 
   if (cmd) {
     
       if (config.userblacklist.includes(message.author.id)) return;
         cmd.run(bot, message, args, discord);  
-        console.log(message.author.username + " used the " + message.content.split(" ")[0] + " command.");
+        console.log(`${message.author.username} used the ${loggedcmd} command.`);
         if (message.guild.id == "427846834225020928") {
         return;
     } else {
-        baselogger(bot, `**Command Run**\n\n**Command:** ${message.content.split(" ")[0]}\n**User:** ${message.author.tag}\n**Message:** ${message.content}\n**Guild:** ${message.guild.name}\n**Channel:** ${message.channel.name}`);
+        baselogger(bot, `**Command Run**\n\n**Command:** ${loggedcmd}\n**User:** ${message.author.tag}\n**Message:** ${message.content}\n**Guild:** ${message.guild.name}\n**Channel:** ${message.channel.name}`);
     }
   } 
 });
