@@ -51,10 +51,10 @@ bot.on("ready", () => {
   async function senddat(up,msg) {
     if (up == null) return;
    await bot.channels.get('441982405985828864').send(msg).then(() => {
-     updates[0].pop()
+     up.pop(up)
    })
    await bot.channels.get('441982440005697539').send(msg).then(() => {
-     updates[0].pop()
+     up.pop(up)
    })
   }
   
