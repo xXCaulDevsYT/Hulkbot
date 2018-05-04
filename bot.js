@@ -1,6 +1,4 @@
-/** jshint -W038z8  */
-
-//
+// init ;p
 const time = Date(),
 stitch = require("mongodb-stitch"),
 pak = require('./package.json'),
@@ -11,15 +9,30 @@ bot = new discord.Client(),
 prefix = process.env.prefix,
 {baselogger} = require('./logger.js'),
 result = Math.round(Math.random()),
-updates = ["Cleverbot is now enabled!"],
-webhookchannelid = "441710517460008960"
-config.updates = updates.join(' ')
-var filteron = "false",
+updates = ["Now using Enmap as a database."],
+webhookchannelid = "441710517460008960",
+Enmap = require('enmap'),
+EnmapLevel = require('enmap-level'),
 cleverbot = require('cleverbot.io'),
 cb = new cleverbot("sMNApmkOjMlZRlPZ", "gskxw3JBqEVGIAboBjOnvyTf8awM1MbS")
+config.updates = updates.join(' ')
 // End of init
 
+// The bot's support server invite vvv
 bot.invite = "https://discord.gg/qEFNkxB"
+// No more invite.
+
+// Grab the enmap.
+
+bot.settings = new Enmap({provider: new EnmapLevel({name: "Settings"})})
+
+const defaultsettings = {
+  prefix: "h!",
+  modlogchannelid: "",
+  modroleid: "",
+  adminroleid: "",
+  filter: true
+}
 
 // Gather commands
 bot.commands = new discord.Collection();
@@ -34,6 +47,7 @@ require('fs').readdir("./commands/", (err, files) => {
 
 bot.on("ready", () => {
   let upmsg = `Oh yeah, more updates! New updates:\n${updates}`
+  
   bot.channels.get('441982405985828864').send(upmsg)
   bot.channels.get('441982440005697539').send(upmsg)
   require('./events/vote.js')(bot)
@@ -80,9 +94,10 @@ bot.on("message", message => {
   if (message.author.bot) return;
 
   if (cmd) {
-    
       if (config.userblacklist.includes(message.author.id)) return;
+      message.channel.startTyping();
         cmd.run(bot, message, args, discord);  
+      message.channel.stopTyping();
         console.log(`${message.author.username} used the ${loggedcmd} command.`);
         if (message.guild.id == "427846834225020928") {
         return;
@@ -92,18 +107,20 @@ bot.on("message", message => {
   } 
 });
 
-bot.on("message", (message, err) => {
-  if (message.content == prefix) {
+bot.on("message", message => {
+  let loggedcmd = bot.commands.get(message.content.split(" ")[0].slice(prefix.length))
+  if (message.content !== loggedcmd) {
     let channel = message.channel;
     
-    channel.send("Sorry, that's not a command. :stuck_out_tongue:").then(m => m.delete(1000));
+    channel.send("Sorry, that's not a command...").then(m => m.delete(10000));
   }
   if (message.content == prefix + "filteroff") {
     // Prevents Unauthorized Users from accessing filters
     if (message.member.hasPermission("MANAGE_GUILD")) {
-      filteron = "false";
-      message.channel.send("Okay, I turned my filters off!");
-      console.log(`${message.author.tag} turned the filters off.`);
+      const guildConf = bot.settings.get(message.guild.id)
+      guildConf.filter = false
+      message.channel.send("Okay, I have disabled my filters for this guild.");
+      console.log(`${message.author.username} turned the filters off for ${message.guild.name}`);
     } else {
       return message.channel.send("Sorry, you don't have the required permissions!");
     }
@@ -111,20 +128,14 @@ bot.on("message", (message, err) => {
   if (message.content == prefix + "filteron") {
     // Prevents Unauthorized Users from accessing filters
     if (message.member.hasPermission("MANAGE_GUILD")) {
-      filteron = "true";
-      message.channel.send("Okay, I turned my filters back on!");
-      console.log(`${message.author.tag} turned the filters on.`);
+      const guildConf = bot.settings.get(message.guild.id)
+      guildConf.filter = true
+      message.channel.send("Okay, I have enabled my filters for this guild.");
+      console.log(`${message.author.username} turned the filters on for ${message.guild.name}`);
     } else {
       return message.channel.send("Sorry, but you don't have the required permissions.");
     }
-    if (message.content == prefix + "coinflip") {
-      if (result) {
-    message.channel.send("**Coin Flip:**\nThe coin landed on heads.");
-      }
-      else {
-        message.channel.send("**Coin Flip:***\nThe coin landed on tails.");
-}}}
-  if (message.content.toLowerCase().includes("i love you hulkbot")) {
+    if (message.content.toLowerCase().includes("i love you hulkbot")) {
     message.channel.send("oh god, not another one");
   }
   if (message.content.includes(`<@294194506113220608>`)) {
@@ -140,15 +151,20 @@ bot.on("message", (message, err) => {
  });
       
 bot.on("guildCreate", (guild) => {
-  require('./mysql.js')(bot, guild)
+  bot.settings.set(guild.id, defaultsettings)
+    .then(() => console.log(`Successfully set guild settings.`))
+    .catch(err => console.error(`Failed to set guild settings.`))
   require('./events/guildCreate.js')(bot, guild, discord)
-  baselogger(bot, `**Guild Join**\n\n**Guild:** ${guild.name}\n**Owner:** ${guild.owner.user.tag}\n**Large:** ${guild.large}\n**Member Count:** ${guild.memberCount}\n\n**Total Guilds:** ${bot.guilds.array().length}`, guild.iconURL);
+  baselogger(bot, `**Guild Join**\n\n**Guild:** ${guild.name}\n**Owner:** ${guild.owner.user.username}\n**Large:** ${guild.large}\n**Member Count:** ${guild.memberCount}\n\n**Total Guilds:** ${bot.guilds.array().length}`, guild.iconURL);
 });
 
 bot.on("guildDelete", (guild) => {
+  bot.settings.delete(guild.id)
+    .then(() => console.log(`Successfully removed guild settings.`))
+    .catch(err => console.error(err))
   // require('./mysql2.js')(bot, guild)
   require('./events/guildDelete.js')(bot, guild, discord)
-  baselogger(bot, `**Guild Leave**\n\n**Guild:** ${guild.name}\n**Owner:** ${guild.owner.user.tag}\n**Large:** ${guild.large}\n**Member Count:** ${guild.memberCount}\n\n**Total Guilds:** ${bot.guilds.array().length}`, guild.iconURL);
+  baselogger(bot, `**Guild Leave**\n\n**Guild:** ${guild.name}\n**Owner:** ${guild.owner.user.username}\n**Large:** ${guild.large}\n**Member Count:** ${guild.memberCount}\n\n**Total Guilds:** ${bot.guilds.array().length}`, guild.iconURL);
 });
 
 bot.login(process.env.botToken); 
