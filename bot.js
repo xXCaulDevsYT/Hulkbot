@@ -11,7 +11,7 @@ bot = new discord.Client(),
 prefix = process.env.prefix,
 {baselogger} = require('./logger.js'),
 result = Math.round(Math.random()),
-updates = ["Rebuffed Hackban where it'll now reject any number that is not a valid ID."],
+updates = ["Cleverbot is now enabled!"],
 webhookchannelid = "441710517460008960"
 config.updates = updates.join(' ')
 var filteron = "false",
@@ -33,6 +33,9 @@ require('fs').readdir("./commands/", (err, files) => {
 });
 
 bot.on("ready", () => {
+  let upmsg = `Oh yeah, more updates! New updates:\n${updates.join}`
+  
+  bot.guilds.get('441982440005697539').send(upmsg)
   require('./events/vote.js')(bot)
   require('./util/poststats.js')(bot)
   require('./util/consoles.js')(bot, config)
@@ -149,4 +152,4 @@ bot.on("guildDelete", (guild) => {
 
 bot.login(process.env.botToken); 
 
-exports.date = time
+exports.date = time, updates, bot
