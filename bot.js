@@ -33,7 +33,7 @@ require('fs').readdir("./commands/", (err, files) => {
 });
 
 bot.on("ready", () => {
-  let upmsg = `Oh yeah, more updates! New updates:\n${updates.join}`
+  let upmsg = `Oh yeah, more updates! New updates:\n${updates}`
   bot.channels.get('441982405985828864').send(upmsg)
   bot.channels.get('441982440005697539').send(upmsg)
   require('./events/vote.js')(bot)
