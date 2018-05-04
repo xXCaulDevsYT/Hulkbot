@@ -62,13 +62,7 @@ bot.on("ready", () => {
 
   bot.guilds.forEach((guild, id) => {
     console.log(`[SERVER] [${guild.memberCount}] ${guild.name} (${guild.id}) | Joined: ${guild.joinedAt.toString()}\n`)
-    bot.settings.set(id, defaultsettings).catch(err => {
-      if (err) {
-        console.error(err)
-      } else {
-        console.log("Set guild settings.")
-      }
-    })
+    bot.settings.set(id, defaultsettings)
   });
 });
 bot.on("guildMemberAdd", (member) => require('./events/guildMemberAdd.js')(bot, member))
@@ -160,27 +154,14 @@ bot.on("message", message => {
       
 bot.on("guildCreate", (guild) => {
   bot.settings.set(guild.id, defaultsettings)
-    .catch(err => {
-    if (err) {
-        console.error(`Failed to set guild settings.`)
-      } else {
-        console.log("Successfully set guild settings.")
-      }
-    })
+  console.log("Set guild settings.")
   require('./events/guildCreate.js')(bot, guild, discord)
   baselogger(bot, `**Guild Join**\n\n**Guild:** ${guild.name}\n**Owner:** ${guild.owner.user.username}\n**Large:** ${guild.large}\n**Member Count:** ${guild.memberCount}\n\n**Total Guilds:** ${bot.guilds.array().length}`, guild.iconURL);
 });
 
 bot.on("guildDelete", (guild) => {
   bot.settings.delete(guild.id)
-    .catch(err => {
-      if (!err) {
-        console.log("Successfully removed guild settings.")
-      }
-        if (err) {
-          console.error(err)
-        }
-    })
+  console.log("Removed guild settings.")
   // require('./mysql2.js')(bot, guild)
   require('./events/guildDelete.js')(bot, guild, discord)
   baselogger(bot, `**Guild Leave**\n\n**Guild:** ${guild.name}\n**Owner:** ${guild.owner.user.username}\n**Large:** ${guild.large}\n**Member Count:** ${guild.memberCount}\n\n**Total Guilds:** ${bot.guilds.array().length}`, guild.iconURL);
