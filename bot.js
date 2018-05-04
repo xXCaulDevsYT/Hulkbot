@@ -48,9 +48,17 @@ require('fs').readdir("./commands/", (err, files) => {
 
 bot.on("ready", () => {
   let upmsg = `Oh yeah, more updates! New updates:\n${updates}`
+  async function senddat(up,msg) {
+    if (up == null) return;
+   await bot.channels.get('441982405985828864').send(msg).then(() => {
+     updates[0].pop()
+   })
+   await bot.channels.get('441982440005697539').send(msg).then(() => {
+     updates[0].pop()
+   })
+  }
   
-  //bot.channels.get('441982405985828864').send(upmsg)
-  bot.channels.get('441982440005697539').send(upmsg)
+  senddat(updates,upmsg)
   require('./events/vote.js')(bot)
   require('./util/poststats.js')(bot)
   require('./util/consoles.js')(bot, config)
