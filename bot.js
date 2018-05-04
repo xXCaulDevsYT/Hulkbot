@@ -111,6 +111,7 @@ bot.on("message", message => {
 });
 
 bot.on("message", message => {
+  if (message.author.bot) return;
   let loggedcmd = bot.commands.get(message.content.split(" ")[0].slice(prefix.length))
   if (message.content !== loggedcmd) {
     let channel = message.channel;
