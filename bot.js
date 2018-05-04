@@ -66,9 +66,10 @@ bot.on("message", message => {
       }
     }
   }
-  if (!message.content.startsWith(prefix)) return;
   if (message.channel.type == "dm") {
     require('./events/cleverbot.js')(bot, message, cb, prefix)
+  } else {
+    if (!message.content.startsWith(prefix)) return;
   }
 
   let mArray = message.content.split(" ");
