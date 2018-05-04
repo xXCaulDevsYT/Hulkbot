@@ -152,4 +152,6 @@ bot.on("guildDelete", (guild) => {
 
 bot.login(process.env.botToken); 
 
-exports.date = time, updates, bot
+exports.date = time
+exports.bot = bot
+exports.updates = updates.join(" ")
