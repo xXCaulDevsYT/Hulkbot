@@ -1,8 +1,7 @@
 /** jshint -W038z8  */
 
-// Discord init  
-const keyhowareya = "heyhowareya",
-time = Date(),
+//
+const time = Date(),
 stitch = require("mongodb-stitch"),
 pak = require('./package.json'),
 discord = require('discord.js'),
@@ -65,7 +64,9 @@ bot.on("message", message => {
     }
   }
   if (!message.content.startsWith(prefix)) return;
-  if (message.channel.type == "dm") return;
+  if (message.channel.type == "dm") {
+    require('./events/cleverbot.js')(bot, message, cb, prefix)
+  }
 
   let mArray = message.content.split(" ");
   let args = mArray.slice(1);
@@ -120,7 +121,7 @@ bot.on("message", (message, err) => {
         message.channel.send("**Coin Flip:***\nThe coin landed on tails.");
 }}}
   if (message.content.toLowerCase().includes("i love you hulkbot")) {
-    message.channel.send("ERMAHGERD");
+    message.channel.send("oh god, not another one");
   }
   if (message.content.includes(`<@294194506113220608>`)) {
       let embed = new discord.RichEmbed()
