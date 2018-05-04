@@ -152,8 +152,8 @@ bot.on("message", message => {
       
 bot.on("guildCreate", (guild) => {
   bot.settings.set(guild.id, defaultsettings)
-    .then(() => console.log(`Successfully set guild settings.`))
-    .catch(err => console.error(`Failed to set guild settings.`))
+    //.then(() => console.log(`Successfully set guild settings.`))
+    //.catch(err => console.error(`Failed to set guild settings.`))
   require('./events/guildCreate.js')(bot, guild, discord)
   baselogger(bot, `**Guild Join**\n\n**Guild:** ${guild.name}\n**Owner:** ${guild.owner.user.username}\n**Large:** ${guild.large}\n**Member Count:** ${guild.memberCount}\n\n**Total Guilds:** ${bot.guilds.array().length}`, guild.iconURL);
 });
