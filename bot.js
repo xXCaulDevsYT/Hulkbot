@@ -32,7 +32,7 @@ const defaultsettings = {
   modlogchannelid: "",
   modroleid: "",
   adminroleid: "",
-  filter: true
+  filter: "true"
 }
 
 // Gather commands
@@ -72,7 +72,7 @@ bot.on("guildBanAdd", (guild, member) => require('./events/BanAdd.js')(bot, guil
  
 bot.on("message", message => {
   const guildConf = bot.settings.get(message.guild.id)
- if ("lol" == NaN) {
+ if (guildConf.filter == "true") {
     for (x = 0; x < profanities.length; x++) {
       if (message.cleanContent.toLowerCase().includes(profanities[x].toLowerCase())) {
         console.log(`[Profanity] ${message.author.username}, said ${profanities[x]} in the ${message.channel.name} channel!`);
@@ -112,17 +112,12 @@ bot.on("message", message => {
 
 bot.on("message", message => {
   if (message.author.bot) return;
-  let loggedcmd = bot.commands.get(message.content.split(" ")[0].slice(prefix.length))
-  if (message.content !== loggedcmd) {
-    let channel = message.channel;
-    
-    channel.send("Sorry, that's not a command...").then(m => m.delete(10000));
-  }
   if (message.content == prefix + "filteroff") {
     // Prevents Unauthorized Users from accessing filters
     if (message.member.hasPermission("MANAGE_GUILD")) {
       const guildConf = bot.settings.get(message.guild.id)
-      guildConf.filter = false
+      guildConf.filter = "false"
+      bot.settings.set(message.guild.id, guildConf)
       message.channel.send("Okay, I have disabled my filters for this guild.");
       console.log(`${message.author.username} turned the filters off for ${message.guild.name}`);
     } else {
@@ -133,7 +128,8 @@ bot.on("message", message => {
     // Prevents Unauthorized Users from accessing filters
     if (message.member.hasPermission("MANAGE_GUILD")) {
       const guildConf = bot.settings.get(message.guild.id)
-      guildConf.filter = true
+      guildConf.filter = "true"
+      bot.settings.set(message.guild.id, guildConf)
       message.channel.send("Okay, I have enabled my filters for this guild.");
       console.log(`${message.author.username} turned the filters on for ${message.guild.name}`);
     } else {
