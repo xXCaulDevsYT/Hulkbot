@@ -1,8 +1,4 @@
-let prefix = "h!"
-var cleverbot = require('cleverbot.io'),
-cb = new cleverbot("sMNApmkOjMlZRlPZ", "gskxw3JBqEVGIAboBjOnvyTf8awM1MbS")
-
-module.exports = (bot, message) => {
+module.exports = (bot, message, cb, prefix) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix)) return;
   cb.setNick("Hulkbot")
