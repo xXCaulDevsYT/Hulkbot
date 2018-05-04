@@ -62,7 +62,15 @@ bot.on("ready", () => {
 
   bot.guilds.forEach((guild, id) => {
     console.log(`[SERVER] [${guild.memberCount}] ${guild.name} (${guild.id}) | Joined: ${guild.joinedAt.toString()}\n`)
-    bot.settings.set(id, defaultsettings)
+    function setstats(err) {
+      if (!err) {
+        bot.settings.set(id, defaultsettings)
+        console.log("Set server settings.")
+      } else {
+        console.error(err)
+      }
+    }
+    setstats()
   });
 });
 bot.on("guildMemberAdd", (member) => require('./events/guildMemberAdd.js')(bot, member))
@@ -71,7 +79,7 @@ bot.on("guildBanAdd", (guild, member) => require('./events/BanAdd.js')(bot, guil
 //bot.on("guildBanRemove", (guild, member) => require('./events/BanRemove.js')(bot, guild, member))
  
 bot.on("message", message => {
- const guildConf = bot.settings.get(message.guild.id)
+  if (message.guild.id !== "264445053596991498") {
  if (guildConf.filter == "true") {
     for (x = 0; x < profanities.length; x++) {
       if (message.cleanContent.toLowerCase().includes(profanities[x].toLowerCase())) {
@@ -81,6 +89,7 @@ bot.on("message", message => {
         return;
       }
     }
+  }
   }
   if (message.channel.type == "dm") {
     return;
@@ -118,7 +127,7 @@ bot.on("message", message => {
     // Prevents Unauthorized Users from accessing filters
     if (message.member.hasPermission("MANAGE_GUILD")) {
       const guildConf = bot.settings.get(message.guild.id)
-      guildConf.filter = "false"
+      guildConf["filter"] = "false"
       bot.settings.set(message.guild.id, guildConf)
       message.channel.send("Okay, I have disabled my filters for this guild.");
       console.log(`${message.author.username} turned the filters off for ${message.guild.name}`);
@@ -130,7 +139,7 @@ bot.on("message", message => {
     // Prevents Unauthorized Users from accessing filters
     if (message.member.hasPermission("MANAGE_GUILD")) {
       const guildConf = bot.settings.get(message.guild.id)
-      guildConf.filter = "true"
+      guildConf["filter"] = "true"
       bot.settings.set(message.guild.id, guildConf)
       message.channel.send("Okay, I have enabled my filters for this guild.");
       console.log(`${message.author.username} turned the filters on for ${message.guild.name}`);
