@@ -70,7 +70,8 @@ bot.on("guildBanAdd", (guild, member) => require('./events/BanAdd.js')(bot, guil
 //bot.on("guildBanRemove", (guild, member) => require('./events/BanRemove.js')(bot, guild, member))
  
 bot.on("message", message => {
- if (filteron == "true") {
+  const guildConf = bot.settings.get(message.guild.id)
+ if (guildConf.filter == true) {
     for (x = 0; x < profanities.length; x++) {
       if (message.cleanContent.toLowerCase().includes(profanities[x].toLowerCase())) {
         console.log(`[Profanity] ${message.author.username}, said ${profanities[x]} in the ${message.channel.name} channel!`);
@@ -81,6 +82,7 @@ bot.on("message", message => {
     }
   }
   if (message.channel.type == "dm") {
+    return;
     require('./events/cleverbot.js')(bot, message, cb, prefix)
   } else {
     if (!message.content.startsWith(prefix)) return;
@@ -147,7 +149,7 @@ bot.on("message", message => {
       .setTimestamp()
    message.channel.send({embed: embed})
   }
-  
+  }
  });
       
 bot.on("guildCreate", (guild) => {
