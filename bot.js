@@ -72,7 +72,7 @@ bot.on("guildBanAdd", (guild, member) => require('./events/BanAdd.js')(bot, guil
  
 bot.on("message", message => {
   //const guildConf = bot.settings.get(message.guild.id)
- if (message.content == "lol"//typeof guildConf == NaN /*guildConf.filter == "true"*/) {
+ if (message.content == "lol"/*typeof guildConf == NaN guildConf.filter == "true"*/) {
     for (x = 0; x < profanities.length; x++) {
       if (message.cleanContent.toLowerCase().includes(profanities[x].toLowerCase())) {
         console.log(`[Profanity] ${message.author.username}, said ${profanities[x]} in the ${message.channel.name} channel!`);
