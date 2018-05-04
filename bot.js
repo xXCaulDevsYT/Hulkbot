@@ -13,6 +13,7 @@ updates = ["Now using Enmap as a database."],
 webhookchannelid = "441710517460008960",
 Enmap = require('enmap'),
 EnmapLevel = require('enmap-level'),
+filter = "true",
 cleverbot = require('cleverbot.io'),
 cb = new cleverbot("sMNApmkOjMlZRlPZ", "gskxw3JBqEVGIAboBjOnvyTf8awM1MbS")
 config.updates = updates.join(' ')
@@ -71,7 +72,7 @@ bot.on("guildBanAdd", (guild, member) => require('./events/BanAdd.js')(bot, guil
  
 bot.on("message", message => {
   const guildConf = bot.settings.get(message.guild.id)
- if (guildConf.filter == true) {
+ if ("lol" == NaN) {
     for (x = 0; x < profanities.length; x++) {
       if (message.cleanContent.toLowerCase().includes(profanities[x].toLowerCase())) {
         console.log(`[Profanity] ${message.author.username}, said ${profanities[x]} in the ${message.channel.name} channel!`);
