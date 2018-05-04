@@ -62,7 +62,7 @@ bot.on("ready", () => {
 
   bot.guilds.forEach((guild, id) => {
     console.log(`[SERVER] [${guild.memberCount}] ${guild.name} (${guild.id}) | Joined: ${guild.joinedAt.toString()}\n`)
-    bot.settings.set(id, defaultsettings)
+    bot.settings.set(id, defaultsettings).then(console.log("Set guild settings"))
   });
 });
 bot.on("guildMemberAdd", (member) => require('./events/guildMemberAdd.js')(bot, member))
@@ -71,8 +71,8 @@ bot.on("guildBanAdd", (guild, member) => require('./events/BanAdd.js')(bot, guil
 //bot.on("guildBanRemove", (guild, member) => require('./events/BanRemove.js')(bot, guild, member))
  
 bot.on("message", message => {
-  //const guildConf = bot.settings.get(message.guild.id)
- if (message.content == "lol"/*typeof guildConf == NaN guildConf.filter == "true"*/) {
+ const guildConf = bot.settings.get(message.guild.id)
+ if (guildConf.filter == "true") {
     for (x = 0; x < profanities.length; x++) {
       if (message.cleanContent.toLowerCase().includes(profanities[x].toLowerCase())) {
         console.log(`[Profanity] ${message.author.username}, said ${profanities[x]} in the ${message.channel.name} channel!`);
@@ -86,7 +86,7 @@ bot.on("message", message => {
     return;
     require('./events/cleverbot.js')(bot, message, cb, prefix)
   } else {
-    if (!message.content.startsWith(prefix)) return;
+    if (!message.content.startsWith(bot.settings.get(message.guild.id).prefix)) return;
   }
 
   let mArray = message.content.split(" ");
@@ -99,7 +99,9 @@ bot.on("message", message => {
   if (cmd) {
       if (config.userblacklist.includes(message.author.id)) return;
       message.channel.startTyping();
+      setTimeout(() => {
         cmd.run(bot, message, args, discord);  
+      }, 5000)
       message.channel.stopTyping();
         console.log(`${message.author.username} used the ${loggedcmd} command.`);
         if (message.guild.id == "427846834225020928") {
@@ -152,16 +154,27 @@ bot.on("message", message => {
       
 bot.on("guildCreate", (guild) => {
   bot.settings.set(guild.id, defaultsettings)
-    //.then(() => console.log(`Successfully set guild settings.`))
-    //.catch(err => console.error(`Failed to set guild settings.`))
+    .catch(err => {
+    if (err) {
+        console.error(`Failed to set guild settings.`)
+      } else {
+        console.log("Successfully set guild settings.")
+      }
+    })
   require('./events/guildCreate.js')(bot, guild, discord)
   baselogger(bot, `**Guild Join**\n\n**Guild:** ${guild.name}\n**Owner:** ${guild.owner.user.username}\n**Large:** ${guild.large}\n**Member Count:** ${guild.memberCount}\n\n**Total Guilds:** ${bot.guilds.array().length}`, guild.iconURL);
 });
 
 bot.on("guildDelete", (guild) => {
   bot.settings.delete(guild.id)
-    //.then(() => console.log(`Successfully removed guild settings.`))
-    //.catch(err => console.error(err))
+    .catch(err => {
+      if (!err) {
+        console.log("Successfully removed guild settings.")
+      }
+        if (err) {
+          console.error(err)
+        }
+    })
   // require('./mysql2.js')(bot, guild)
   require('./events/guildDelete.js')(bot, guild, discord)
   baselogger(bot, `**Guild Leave**\n\n**Guild:** ${guild.name}\n**Owner:** ${guild.owner.user.username}\n**Large:** ${guild.large}\n**Member Count:** ${guild.memberCount}\n\n**Total Guilds:** ${bot.guilds.array().length}`, guild.iconURL);
