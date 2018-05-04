@@ -62,7 +62,13 @@ bot.on("ready", () => {
 
   bot.guilds.forEach((guild, id) => {
     console.log(`[SERVER] [${guild.memberCount}] ${guild.name} (${guild.id}) | Joined: ${guild.joinedAt.toString()}\n`)
-    bot.settings.set(id, defaultsettings).then(console.log("Set guild settings"))
+    bot.settings.set(id, defaultsettings).catch(err => {
+      if (err) {
+        console.error(err)
+      } else {
+        console.log("Set guild settings.")
+      }
+    })
   });
 });
 bot.on("guildMemberAdd", (member) => require('./events/guildMemberAdd.js')(bot, member))
