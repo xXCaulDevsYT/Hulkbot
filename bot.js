@@ -58,7 +58,7 @@ bot.on("ready", () => {
    })
   }
   
-  senddat(updates,upmsg)
+  // senddat(updates,upmsg)
   require('./events/vote.js')(bot)
   require('./util/poststats.js')(bot)
   require('./util/consoles.js')(bot, config)
