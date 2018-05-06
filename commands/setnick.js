@@ -5,7 +5,7 @@ if (message.author.id == process.env.oid) {
   
     message.channel.send(`Okay, I set my username to ${newname}!`).then(m => {
       message.delete(100)
-      m.delete(100)
+      m.delete(10000)
     })
     } else {
       message.channel.send("Nope!")
