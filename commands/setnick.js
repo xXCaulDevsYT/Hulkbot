@@ -10,7 +10,6 @@ if (message.author.id == process.env.oid) {
     } else {
       message.channel.send("Nope!")
     }
-  }
 }
 
 module.exports.help = {
