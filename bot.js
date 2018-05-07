@@ -100,12 +100,7 @@ bot.on("message", message => {
     }
   }
   }
-  if (message.channel.type == "dm") {
-    return;
-    require('./events/cleverbot.js')(bot, message, cb, prefix)
-  } else {
-    if (!message.content.startsWith(bot.settings.get(message.guild.id).prefix)) return;
-  }
+  if (message.channel.type == "dm") return;
 
   let mArray = message.content.split(" ");
   let args = mArray.slice(1);
