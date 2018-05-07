@@ -9,11 +9,8 @@ bot = new discord.Client(),
 prefix = process.env.prefix,
 {baselogger} = require('./logger.js'),
 result = Math.round(Math.random()),
-updates = ["Now using Enmap as a database."],
+updates = ["Removed the language filter for good."],
 webhookchannelid = "441710517460008960",
-Enmap = require('enmap'),
-EnmapLevel = require('enmap-level'),
-filter = "true",
 cleverbot = require('cleverbot.io'),
 cb = new cleverbot("sMNApmkOjMlZRlPZ", "gskxw3JBqEVGIAboBjOnvyTf8awM1MbS")
 config.updates = updates.join(' ')
@@ -22,18 +19,6 @@ config.updates = updates.join(' ')
 // The bot's support server invite vvv
 bot.invite = "https://discord.gg/qEFNkxB"
 // No more invite.
-
-// Grab the enmap.
-
-bot.settings = new Enmap({provider: new EnmapLevel({name: "Settings"})})
-
-const defaultsettings = {
-  prefix: "h!",
-  modlogchannelid: "",
-  modroleid: "",
-  adminroleid: "",
-  filter: "true"
-}
 
 // Gather commands
 bot.commands = new discord.Collection();
@@ -47,18 +32,6 @@ require('fs').readdir("./commands/", (err, files) => {
 });
 
 bot.on("ready", () => {
-  let upmsg = `Oh yeah, more updates! New updates:\n${updates}`
-  async function senddat(up,msg) {
-    if (up == null) return;
-   await bot.channels.get('441982405985828864').send(msg).then(() => {
-     up.pop(up)
-   })
-   await bot.channels.get('441982440005697539').send(msg).then(() => {
-     up.pop(up)
-   })
-  }
-  
-  // senddat(updates,upmsg)
   require('./events/vote.js')(bot)
   require('./util/poststats.js')(bot)
   require('./util/consoles.js')(bot, config)
@@ -70,15 +43,6 @@ bot.on("ready", () => {
 
   bot.guilds.forEach((guild, id) => {
     console.log(`[SERVER] [${guild.memberCount}] ${guild.name} (${guild.id}) | Joined: ${guild.joinedAt.toString()}\n`)
-    function setstats(err) {
-      if (!err) {
-        bot.settings.set(id, defaultsettings)
-        console.log("Set server settings.")
-      } else {
-        console.error(err)
-      }
-    }
-    setstats()
   });
 });
 bot.on('error', err => {
@@ -94,19 +58,6 @@ bot.on("guildBanAdd", (guild, member) => require('./events/BanAdd.js')(bot, guil
 //bot.on("guildBanRemove", (guild, member) => require('./events/BanRemove.js')(bot, guild, member))
  
 bot.on("message", message => {
-  if (message.guild.id !== "264445053596991498") {
-    let guildConf = bot.settings.get(message.guild.id)
- if (guildConf["filter"] == "true") {
-    for (x = 0; x < profanities.length; x++) {
-      if (message.cleanContent.toLowerCase().includes(profanities[x].toLowerCase())) {
-        console.log(`[Profanity] ${message.author.username}, said ${profanities[x]} in the ${message.channel.name} channel!`);
-        message.channel.send(`<@${message.author.id}>, LANGUAGE!`).then(m => m.delete(10000));
-        message.delete(500);
-        return;
-      }
-    }
-  }
-  }
   if (!message.guild) return;
   if (message.channel.type == "dm") return;
 
@@ -190,6 +141,17 @@ bot.on("guildDelete", (guild) => {
 
 bot.login(process.env.botToken); 
 
+let upmsg = `Oh yeah, more updates! New updates:\n${updates}`
+  async function senddat(up,msg) {
+    if (up == null) return;
+   await bot.channels.get('441982405985828864').send(msg).then(() => {
+     up.pop(up)
+   })
+   await bot.channels.get('441982440005697539').send(msg).then(() => {
+     up.pop(up)
+   })
+  }
 exports.date = time
 exports.bot = bot
 exports.updates = updates.join(" ")
+exports.sendupdates = senddat
