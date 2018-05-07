@@ -107,6 +107,7 @@ bot.on("message", message => {
     }
   }
   }
+  if (!message.guild) return;
   if (message.channel.type == "dm") return;
 
   let mArray = message.content.split(" ");
