@@ -7,8 +7,13 @@ module.exports.run = (bot, message, args, discord) => {
   
   if (!role) return message.channel.send(`You need to mention a role.`);
   if (!message.guild.roles.get(roleid)) return message.channel.send(`That role doesn't exist...`);
-  message.channel.send(`Okay! I added the role ${rolename} to the user <@${member.id}>.`)
   member.addRole(role.id);
+  let em = new discord.RichEmbed()
+  .setTitle("Hulkbot Addrole")
+  .setDescription(`Okay! I added the role ${rolename} to the user <@${member.id}>.`)
+  .setTimestamp()
+  .setFooter(`${message.author.username} added role ${rolename} to user ${member.user.username}.`)
+  message.channel.send({embed: em})
 };
 
 module.exports.help = {
