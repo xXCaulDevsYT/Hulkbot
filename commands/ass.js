@@ -11,7 +11,7 @@ module.exports.run = (bot, message, args, discord) => {
     } else {
         request.get("http://media.oboobs.ru/boobs_preview/" + MathLoL + ".jpg").then(r => {
             let img = fs.writeFile(`ass.jpg`, r.body)
-            let embed = new discord.RichEmbed()
+            let em = new discord.RichEmbed()
             .setTitle("Hulkbot Ass")
             .setDescription("Here's an ass pic...")
             .setImage(img)
