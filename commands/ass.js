@@ -1,22 +1,22 @@
-const request = require('snekfetch');
+const request = require("snekfetch")
+const fs = require("fs")
 
 module.exports.run = (bot, message, args, discord) => {
-    var max = 5511;
-    var min = 1000;
+  var max = 12449;
+    var min = 10000;
     var MathRan = Math.floor(Math.random() * (max - min + 0)) + min;
     var MathLoL = Math.round(MathRan);
     if (!message.channel.nsfw) {
         message.channel.send(":underage: NSFW Command. Please switch to NSFW channel in order to use this command.")
     } else {
-        var randomname = Math.floor(Math.random() * (99999999999999999999 - 11111111111111111111 + 0)) + 11111111111111111111;
-        request.get(`https://media.obutts.ru/butts_preview/0${MathLoL}.jpg`).then(r => {  
-        let embed = new discord.RichEmbed()
+        request.get("http://media.oboobs.ru/boobs_preview/" + MathLoL + ".jpg").then(r => {
+            let img = fs.writeFile(`ass.jpg`, r.body)
+            let embed = new discord.RichEmbed()
             .setTitle("Hulkbot Ass")
-            .setDescription("Alright, here's an ass pic...")
-            .setImage(r.body)
-            .setFooter(`Requested by ${message.author.username}`)
-            .setTimestamp()
-            message.channel.send({embed: embed})
+            .setDescription("Here's an ass pic...")
+            .setImage(img)
+            message.channel.send({embed: em})
+            fs.unlink(`./ass.jpg`)
         })
     }
 }
