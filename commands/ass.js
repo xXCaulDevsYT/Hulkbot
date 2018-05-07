@@ -15,6 +15,7 @@ module.exports.run = (bot, message, args, discord) => {
             .setImage(`https://media.obutts.ru/butts_preview/0${MathLoL}.jpg`)
             .setFooter(`Requested by ${message.author.username}`)
             .setTimestamp()
+            message.channel.send({embed: embed})
     }
 }
 
