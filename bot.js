@@ -81,6 +81,13 @@ bot.on("ready", () => {
     setstats()
   });
 });
+bot.on('error', err => {
+  console.error(`Error... ${err}`).then(() => {
+    bot.destroy().then(() => {
+      bot.login(process.env.botToken)
+    })
+  })
+})
 bot.on("guildMemberAdd", (member) => require('./events/guildMemberAdd.js')(bot, member))
 bot.on("guildMemberRemove", (member) => require('./events/guildMemberRemove.js')(bot, member))
 bot.on("guildBanAdd", (guild, member) => require('./events/BanAdd.js')(bot, guild, member))
