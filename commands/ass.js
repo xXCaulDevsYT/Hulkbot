@@ -9,8 +9,8 @@ module.exports.run = (bot, message, args, discord) => {
     if (!message.channel.nsfw) {
         message.channel.send(":underage: NSFW Command. Please switch to NSFW channel in order to use this command.")
     } else {
-        request.get("http://media.oboobs.ru/boobs_preview/" + MathLoL + ".jpg").then(r => {
-            let img = fs.writeFile(`ass.jpg`, r.body)
+        request.get("http://media.obutts.ru/butts_preview/" + MathLoL + ".jpg").then(r => {
+            let img = fs.writeFileSync(`ass.jpg`, r.body)
             let em = new discord.RichEmbed()
             .setTitle("Hulkbot Ass")
             .setDescription("Here's an ass pic...")
