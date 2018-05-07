@@ -1,8 +1,7 @@
 const randomPuppy = require('random-puppy');
 const request = require('snekfetch');
-const fs = require("fs")
 
-exports.run = (bot, message, args, discord) => {
+module.exports.run = (bot, message, args, discord) => {
     if (!message.channel.nsfw) return message.channel.send(":underage: NSFW Command. Please switch to NSFW channel in order to use this command.")
 
     var subreddits = [
@@ -14,22 +13,17 @@ exports.run = (bot, message, args, discord) => {
         'PerfectPussies',
         'spreading'
     ]
-    var sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
+    var sub = subreddits[Math.floor(Math.random() * subreddits.length)];
 
     randomPuppy(sub)
         .then(url => {
-            request.get(url).then(r => {
-                fs.writeFile(`pussy.jpg`, r.body)
-                let embed = new discord.RichEmbed()
-                .setTitle("Hulkbot NSFW")
-                .setDescription("Alright... Here's a random pussy pic.")
-                .setImage(r.body)
-                .setColor("BLACK")
-                .setAuthor(":neutral:")
-                .setThumbnail(bot.user.avatarURL)
-                message.channel.send(embed)
-                fs.unlink(`./pussy.jpg`)
-            })
+            let embed = new discord.RichEmbed()
+            .setTitle("Hulkbot Pussy")
+            .setDescription("Alright, here's a pussy pic...")
+            .setImage(url)
+            .setTimestamp()
+            .setFooter(`Requested by ${message.author.username}`)
+            message.channel.send({embed: embed})
         })
 }
 
