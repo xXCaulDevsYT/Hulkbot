@@ -5,7 +5,6 @@ module.exports.run = (bot, message, args, discord) => {
 	let mod = ["ban", "hackban", "unhackban", "softban", "kick", "mute", "unmute", "purge"]
 	let nsfw = ["pussy", "ass", "boobs", "dick", "fuck"]
 	let msg = args.join(" ")
-	if (!categories.includes(msg)) return message.channel.send("That's not a category, please enter a valid category.")
 	let em = new discord.RichEmbed()
 	.setTitle("Help Menu")
 	.setFooter(`Requested by ${message.author.username}.`)
