@@ -1,6 +1,6 @@
 const search = require('random-puppy')
 
-module.exports.run = (bot, message, args) => {
+module.exports.run = (bot, message, args, discord) => {
   let em = new discord.RichEmbed()
   .setTitle("Hulkbot Boobs")
   .setDescription("Here's a boob pic...")
