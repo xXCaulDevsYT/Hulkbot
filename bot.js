@@ -99,7 +99,6 @@ bot.on("message", message => {
       .setTimestamp()
    message.channel.send({embed: embed})
   }
-  }
  });
       
 bot.on("guildCreate", (guild) => {
