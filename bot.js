@@ -73,9 +73,9 @@ bot.on("message", message => {
   if (cmd) {
       if (config.userblacklist.includes(message.author.id)) return;
       message.channel.startTyping();
-      setTimeout(() => {
+    setTimeout(() => {
         cmd.run(bot, message, args, discord);  
-      }, ms("5s"))
+    }, ms("3s"))
       message.channel.stopTyping();
         console.log(`${message.author.username} used the ${loggedcmd} command.`);
         if (message.guild.id == "427846834225020928") {
