@@ -1,70 +1,57 @@
-module.exports.run = (bot, message, args, suffix, discord) => {
-	let au = message.author.id
-	let oid = process.env.oid
-  let fields = [
-    {
-      name: ":gear: Prefix:",
-      value: `\`h!\``,
-      inline: true
-    },
-    {
-      name: ":hammer_pick: Moderation:",
-      value: `mute, unmute, kick, ban, auth, purge, perms, filteroff, filteron, hackban, and unhackban.`,
-      value: `\`\`\`ini\nauth = "Authorize Yourself!"\nban = "Need to ban someone?"\nfilteron = "Turns on the language filter!"\nfilteroff = "Turns off the language filter!"\nkick = "Need to kick someone?"\nmute = "Mute someone in chat!"\nunmute = "Unmute someone from chat!"\npurge = "Delete Messages from Chat!"\nhackban = "Need to ban someone that's not in your guild? Ban them by their ID!"\nunhackban = "Need to unhackban someone?"\`\`\``,
-    },
-    {
-      name: ":robot: Bot:",
-      value: `\`\`\`ini\n@Hulkbot = "Get some more of that derp-awesome info!"\ninfo = "Get some basic info about the bot."\njoinserver = "Join the Support Server!"\ninvite = "Want to invite the bot?"\ninfo = "Know more about the bot!"\nping = "Pong?"\nuptime = "See how long the bot has been alive!"\nlistservers = "See the number of the bot users, channels, and guilds."\`\`\``,
-    },
-           {
-      name: ":lollipop: Fun:",
-      value: `\`\`\`ini\navatar = "Fetches an HD Image of a user!"\nbork = "Bork someone for fun!"\ncoinflip = "Heads or Tails!"\nsay = "Want me to say something?"\nmyid = "Need your own ID?"\nserverid = "Need the Server's ID?"\nyomomma = "YOMOMMA!"\nknockknock = "I'll get you a knock knock joke."\nadvice = "I'll get you some good advice, so apply it to your life boi."\nchucknorris = "I'll get you a random chuck norris joke."\nwhois = "I'll look a user up on roblox for you."\nmeme = "I'll get a random meme for you."\`\`\``,
-    },
-    {
-      name: ":musical_note: Music:",
-      value: `\`\`\`ini\nplay = "Play a song/youtube link!"\nskip = "Skip the song."\ndisconnect = "Disconnect the bot from the voice channel."\nvolume = "Change the volume of the bot."\nresume = "Resume the playback."\nshuffle = "Shuffle the songs in the queue."\nclean = "Cleans some of the bot's messages."\nsearch = "Search for a song, and choose whether to play it or not."\nclear = "Clear the queue."\`\`\``
-    },
-    {
-      name: "Need More Help?",
-      value: `[Click Here!](https://bot.hulkbot.ml/commands)`,
-    }, 
-    {
-       name: "Other Languages",
-       value: "Para meus usuários espanhóis e portugueses: Para ver um menu de ajuda em seu idioma, use h!althelp."
-    }
-  ];
-    if (au == oid) {
-      fields.push({
-        name: ":medal: Owner:",
-	value: `\`\`\`ini\nshutdown = "Shutdown the Bot!"\nchangegame = "Change the bot's playing status."\neval = "Execute some JavaScript from inside Discord!"\nonbot = "Change the bots status to Online!"\nidlebot = "Change the bots status to Idle!"\ndnd = "Change the bots status to Do Not Disturb."\ninvbot = "Change the bots status to Invisible!"\ndebug = "See some advanced info about the bot."\nmshutdown = "Shutdown the music portion of the bot."\nmrestart = "Restart the music module of the bot."\nsetavatar = "Set the bot's avatar"\nsetnick = "Set the nickname of the bot."\ngeninvite = "Generate an invite for any server the bot is in."\`\`\``,
-        inline: false
-      });
-    } else {
-      fields.pop({
-      	name: ":medal: Owner:",
-	value: `\`\`\`ini\nshutdown = "Shutdown the Bot!"\nchangegame = "Change the bot's playing status."\neval = "Execute some JavaScript from inside Discord!"\nonbot = "Change the bots status to Online!"\nidlebot = "Change the bots status to Idle!"\ndnd = "Change the bots status to Do Not Disturb."\ninvbot = "Change the bots status to Invisible!"\ndebug = "See some advanced info about the bot."\nmshutdown = "Shutdown the music portion of the bot."\nmrestart = "Restart the music portion of the bot."\nsetavatar = "Set the bot's avatar"\nsetnick = "Set the nickname of the bot."\ngeninvite = "Generate an invite for any server the bot is in."\`\`\``,
-	inline: false
-      });
-    };
-  message.channel.send({
-    embed: {
-    color: 3447003,
-    author: {
-      name: bot.user.username,
-      icon_url: bot.user.avatarURL
-    },
-    title: "Help Message!",
-    url: "https://discord.gg/XvMA2rJ",
-    fields: fields,
-    timestamp: new Date(),
-    footer: {
-      icon_url: bot.user.avatarURL,
-      text: "Music Commands are back down... Sorry guys! To make up for it, I've made h!hackban, and h!unhackban! Enjoy!-FHGDev"
-    }
-  }
-})
-}
+module.exports.run = (bot, message, args, discord) => {
+ 	let categories = ["Bot", "Moderation", "Fun", "Music", "More help", "NSFW"]
+	let fun = ["coinflip", "chucknorris", "yomomma", "bork", "advice", "redeem", "google", "knockknock", "meme", "avatar", "snek", "stats", "timer", "whois", "weather"]
+	let bot = ["uptime", "ping", "@Hulkbot", "joinserver", "invite", "info", "stats", "listservers", "creators", "help"]
+	let mod = ["ban", "hackban", "unhackban", "softban", "kick", "mute", "unmute", "purge"]
+	let nsfw = ["pussy", "ass", "boobs", "dick", "fuck"]
+	let msg = args.join(" ")
+	let em = new discord.RichEmbed()
+	.setTitle("Help Menu")
+	.setFooter(`Requested by ${message.author.username}.`)
+	
+	if (msg == categories[2]) {
+		em
+		.setTitle(":lollipop: Fun")
+		.setDescription("Let's get some fun going in this boring place!")
+		.addField("Fun Commands", fun.join("\n"), true)
+		
+		message.channel.send({embed: em})
+	}
+	if (msg == categories[1]) {
+		em
+		.setTitle("Moderation :hammer_pick:")
+		.setDescription("Let me handle the bad bois... Hehe.")
+		.addField("Moderation Commands", mod.join("\n"), true)
+		
+		message.channel.send({embed: em})
+	}
+	if (msg == categories[0]) {
+		em
+		.setTitle("Bot :robot:")
+		.setDescription(`Get to kno da wae... UMMM I mean the bot.`)
+		.addField("Bot Commands", bot.join("\n"), true)
+		
+		message.channel.send({embed: em})
+	}
+	if (msg == categories[5]) {
+		em
+		.setTitle("NSFW :underage:")
+		.setDescription(`These commands are *not* for children!`)
+		.addField(`NSFW Commands`, nsfw.join("\n"), true) 
+		
+		message.channel.send({embed: em})
+	}
+	
+	if (!msg) {
+		em
+		.setDescription(`**Use h!help [category] for help on a certain category.**`)
+		.setTimestamp()
+		.addField("Categories", categories.join("\n"), true)
+		
+  	message.channel.send({embed: em})
+	};
+};
 
 module.exports.help = {
   name: "help"
-}
+};
