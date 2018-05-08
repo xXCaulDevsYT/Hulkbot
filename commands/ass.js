@@ -1,6 +1,7 @@
 const puppy = require('random-puppy')
 
 module.exports.run = (bot, message, args, discord) => {
+  if (!message.channel.nsfw) return message.channel.send(":underage: You need to be in an NSFW channel to use this command.")
   let keywords = [
     "ass",
     "butt",
