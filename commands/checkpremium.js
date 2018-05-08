@@ -34,7 +34,7 @@ module.exports.run = (bot, message, args, discord) => {
     message.channel.send({embed: em})
   }*/
     
-    if (bot.guilds.size >= 50 && !bot.guilds.size >= 55 ) {
+    if (bot.guilds.size >= 50 && !bot.guilds.size <= 55 ) {
         let em = new discord.RichEmbed()
         .setTitle("Premium Check")
         .setDescription("PREMIUM IS FREE! (until bot reaches 55 servers.) ENJOY! :smile:")
