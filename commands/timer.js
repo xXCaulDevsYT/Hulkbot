@@ -1,3 +1,5 @@
+const ms = require('ms')
+
 module.exports.run = (bot, message, args, discord) => {
   let time = args.join(' ')
   let embed = new discord.RichEmbed()
@@ -11,7 +13,7 @@ module.exports.run = (bot, message, args, discord) => {
   setTimeout(() => {
     embed.setDescription(`BEEP! The time's up! <@${message.author.id}>`)
     message.channel.send({embed: embed})
-  }, time)
+  }, ms(time))
 }
 
 module.exports.help = {
