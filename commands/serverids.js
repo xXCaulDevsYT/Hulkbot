@@ -1,4 +1,4 @@
-module.exports.run = (bot, message, args) => {
+module.exports.run = (bot, message, args, discord) => {
   bot.guilds.forEach(async ga => {
     let ids = ga.id
     let em = new discord.RichEmbed()
