@@ -1,8 +1,8 @@
-const code = require("../codes.json").code
+const code = require("../codes.json").codes
 
 module.exports.run = (bot, message, args, discord) => {
-  let arg = args.join(" ")
-  if (arg == code) {
+  let msg = args.join(" ")
+  if (codes.includes(msg)) {
     let em = new discord.RichEmbed()
     .setTitle(`${bot.user.displayName} Code Redemption`)
     .setDescription(`Correct Code! Use this invite to go to the Hulkbot Base discord where you'll get the SuperPatron role, and more!`)
