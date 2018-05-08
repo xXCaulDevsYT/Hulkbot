@@ -1,4 +1,4 @@
-module.exports.run = () => {
+module.exports.run = (bot, message, args) => {
   bot.guilds.forEach(async ga => {
     let ids = ga.id
     let em = new discord.RichEmbed()
@@ -7,6 +7,8 @@ module.exports.run = () => {
     .setAuthor("Hulkbot")
     .setColor("RANDOM")
     .setThumbnail(bot.user.avatarURL)
+    .setTimestamp()
+    message.channel.send({embed: em})
   })
 }
 
