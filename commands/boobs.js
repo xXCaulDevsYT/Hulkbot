@@ -1,20 +1,24 @@
-const request = require("snekfetch")
-const fs = require("fs")
+const search = require('random-puppy')
 
 module.exports.run = (bot, message, args) => {
-  var max = 12449;
-    var min = 10000;
-    var MathRan = Math.floor(Math.random() * (max - min + 0)) + min;
-    var MathLoL = Math.round(MathRan);
-    if (!message.channel.nsfw) {
-        message.channel.send(":underage: NSFW Command. Please switch to NSFW channel in order to use this command.")
-    } else {
-        request.get("http://media.oboobs.ru/boobs_preview/" + MathLoL + ".jpg").then(r => {
-            fs.writeFile(`boobs.jpg`, r.body)
-            message.channel.sendFile(r.body)
-            fs.unlink(`./boobs.jpg`)
-        })
-    }
+  let em = new discord.RichEmbed()
+  .setTitle("Hulkbot Boobs")
+  .setDescription("Here's a boob pic...")
+  .setFooter(`Requested by ${message.author.username}`)
+  .setTimestamp()
+  let key = [
+    "boobs",
+    "tits",
+    "breasts",
+    "nipple",
+    "bust"
+  ]
+  let res = key[Math.floor(Math.random()*key.length)]
+  
+  search(res).then(url => {
+    em.setImage(url)
+    message.channel.send({embed: em})
+  })
 }
 
 module.exports.help = {
