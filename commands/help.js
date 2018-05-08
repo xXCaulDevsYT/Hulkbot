@@ -1,7 +1,7 @@
 module.exports.run = (bot, message, args, discord) => {
  	let categories = ["Bot", "Moderation", "Fun", "Music", "More help", "NSFW"]
 	let fun = ["coinflip", "chucknorris", "yomomma", "bork", "advice", "redeem", "google", "knockknock", "meme", "avatar", "snek", "stats", "timer", "whois", "weather"]
-	let bot = ["uptime", "ping", "@Hulkbot", "joinserver", "invite", "info", "stats", "listservers", "creators", "help"]
+	let bota = ["uptime", "ping", "@Hulkbot", "joinserver", "invite", "info", "stats", "listservers", "creators", "help"]
 	let mod = ["ban", "hackban", "unhackban", "softban", "kick", "mute", "unmute", "purge"]
 	let nsfw = ["pussy", "ass", "boobs", "dick", "fuck"]
 	let msg = args.join(" ")
@@ -29,7 +29,7 @@ module.exports.run = (bot, message, args, discord) => {
 		em
 		.setTitle("Bot :robot:")
 		.setDescription(`Get to kno da wae... UMMM I mean the bot.`)
-		.addField("Bot Commands", bot.join("\n"), true)
+		.addField("Bot Commands", bota.join("\n"), true)
 		
 		message.channel.send({embed: em})
 	}
