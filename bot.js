@@ -59,6 +59,7 @@ bot.on("guildBanAdd", (guild, member) => require('./events/BanAdd.js')(bot, guil
  
 bot.on("message", message => {
   if (!message.guild) return;
+  if (!message.content.startsWith(prefix)) return;
   if (message.channel.type == "dm") return;
 
   let mArray = message.content.split(" ");
@@ -86,29 +87,6 @@ bot.on("message", message => {
 
 bot.on("message", message => {
   if (message.author.bot) return;
-  if (message.content == prefix + "filteroff") {
-    // Prevents Unauthorized Users from accessing filters
-    if (message.member.hasPermission("MANAGE_GUILD")) {
-      const guildConf = bot.settings.get(message.guild.id)
-      guildConf["filter"] = "false"
-      bot.settings.set(message.guild.id, guildConf)
-      message.channel.send("Okay, I have disabled my filters for this guild.");
-      console.log(`${message.author.username} turned the filters off for ${message.guild.name}`);
-    } else {
-      return message.channel.send("Sorry, you don't have the required permissions!");
-    }
-  }
-  if (message.content == prefix + "filteron") {
-    // Prevents Unauthorized Users from accessing filters
-    if (message.member.hasPermission("MANAGE_GUILD")) {
-      const guildConf = bot.settings.get(message.guild.id)
-      guildConf["filter"] = "true"
-      bot.settings.set(message.guild.id, guildConf)
-      message.channel.send("Okay, I have enabled my filters for this guild.");
-      console.log(`${message.author.username} turned the filters on for ${message.guild.name}`);
-    } else {
-      return message.channel.send("Sorry, but you don't have the required permissions.");
-    }
     if (message.content.toLowerCase().includes("i love you hulkbot")) {
     message.channel.send("oh god, not another one");
   }
@@ -125,15 +103,11 @@ bot.on("message", message => {
  });
       
 bot.on("guildCreate", (guild) => {
-  bot.settings.set(guild.id, defaultsettings)
-  console.log("Set guild settings.")
   require('./events/guildCreate.js')(bot, guild, discord)
   baselogger(bot, `**Guild Join**\n\n**Guild:** ${guild.name}\n**Owner:** ${guild.owner.user.username}\n**Large:** ${guild.large}\n**Member Count:** ${guild.memberCount}\n\n**Total Guilds:** ${bot.guilds.array().length}`, guild.iconURL);
 });
 
 bot.on("guildDelete", (guild) => {
-  bot.settings.delete(guild.id)
-  console.log("Removed guild settings.")
   // require('./mysql2.js')(bot, guild)
   require('./events/guildDelete.js')(bot, guild, discord)
   baselogger(bot, `**Guild Leave**\n\n**Guild:** ${guild.name}\n**Owner:** ${guild.owner.user.username}\n**Large:** ${guild.large}\n**Member Count:** ${guild.memberCount}\n\n**Total Guilds:** ${bot.guilds.array().length}`, guild.iconURL);
