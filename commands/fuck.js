@@ -12,7 +12,9 @@ module.exports.run = (bot, message, args, discord) => {
     "pussyfuck",
     "assfuck",
     "penetration",
-    "penetrate"
+    "penetrate",
+    "sex",
+    "sexy"
   ]
   
   let res = keys[Math.floor(Math.random()*keys.length)]
