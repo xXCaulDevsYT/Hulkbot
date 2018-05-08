@@ -12,6 +12,7 @@ result = Math.round(Math.random()),
 updates = ["Removed the language filter for good."],
 webhookchannelid = "441710517460008960",
 cleverbot = require('cleverbot.io'),
+ms = require('ms'),
 cb = new cleverbot("sMNApmkOjMlZRlPZ", "gskxw3JBqEVGIAboBjOnvyTf8awM1MbS")
 config.updates = updates.join(' ')
 // End of init
@@ -74,7 +75,7 @@ bot.on("message", message => {
       message.channel.startTyping();
       setTimeout(() => {
         cmd.run(bot, message, args, discord);  
-      }, 5000)
+      }, ms("5s"))
       message.channel.stopTyping();
         console.log(`${message.author.username} used the ${loggedcmd} command.`);
         if (message.guild.id == "427846834225020928") {
