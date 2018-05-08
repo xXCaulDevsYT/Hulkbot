@@ -2,7 +2,7 @@ const fs = require('fs')
 const config = require('../config.json')
 
 module.exports.run = (bot, message, args, discord) => {
-    let ga = bot.guilds.get('356178662837452800')
+    /*let ga = bot.guilds.get('356178662837452800')
     let member = message.author
     if (message.member == message.guild.owner) {
     if (ga.members.find('id', member.id).roles.find('name','SuperPatron')) {
@@ -32,7 +32,16 @@ module.exports.run = (bot, message, args, discord) => {
       .setColor("RED")
       
     message.channel.send({embed: em})
-  }
+  }*/
+    
+    if (bot.guilds.size >= 50 && !bot.guilds.size >= 55 ) {
+        let em = new discord.RichEmbed()
+        .setTitle("Premium Check")
+        .setDescription("PREMIUM IS FREE! (until bot reaches 55 servers.) ENJOY! :smile:")
+        .setTimestamp()
+        .setFooter()
+        message.channel.send({embed: em})
+    }
 }
 
 module.exports.help = {
