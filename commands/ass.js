@@ -9,7 +9,9 @@ module.exports.run = (bot, message, args, discord) => {
     "butthole"
   ]
   
-  puppy(keywords).then(url => {
+  var result = keywords[Math.floor(Math.random()*keywords.length)]
+  
+  puppy(result).then(url => {
     let embed = new discord.RichEmbed()
     .setTitle("Hulkbot Ass")
     .setDescription("Here's an ass pic...")
