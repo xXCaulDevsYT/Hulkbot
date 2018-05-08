@@ -15,7 +15,8 @@ module.exports.run = (bot, message, args, discord) => {
     .setDescription("Here's an ass pic...")
     .setImage(url)
     .setTimestamp()
-    .setFooter(`Requested by ${message.author.username`)
+    .setFooter(`Requested by ${message.author.username}`)
+    message.channel.send({embed: embed})
   })
 }
 
