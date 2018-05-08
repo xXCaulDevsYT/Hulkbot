@@ -15,7 +15,7 @@ module.exports.run = (bot, message, args, discord) => {
 		em
 		.setTitle(":heavy_plus_sign: More help")
 		.setDescription("For more help, check out the [command docs](https://gist.github.com/FHGDev/67ed143f693a6424cc4ef7ce9ca3c796)!")
-		.addField("Do you *still* need more help? Use the `h!contact` command, and I'll get to you ASAP.")
+		.addField("EVEN MORE HELP?", "Do you *still* need more help? Use the `h!contact` command, and I'll get to you ASAP.")
 		
 		message.channel.send({embed: em})
 	}
