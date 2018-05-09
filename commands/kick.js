@@ -1,4 +1,4 @@
-const {baselogger} = require('../logger.js')
+const {baselogger} = require('../src/logger.js')
 
 module.exports.run = (bot, message, args, discord) => {
  let member = message.mentions.members.first();
