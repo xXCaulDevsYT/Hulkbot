@@ -24,11 +24,11 @@ bot.invite = "https://discord.gg/qEFNkxB"
 // Gather commands
 bot.commands = new discord.Collection();
 
-require('fs').readdir("../commands/", (err, files) => {
+require('fs').readdir("./commands/", (err, files) => {
   console.log("Loading commands...");
   if (err) return console.log(`Command loading failed!`);
   files.filter(f => f.split(".").pop() === "js").forEach((f, i) => {
-    bot.commands.set(require(`../commands/${f}`).help.name, require(`../commands/${f}`));
+    bot.commands.set(require(`./commands/${f}`).help.name, require(`./commands/${f}`));
   });
 });
 
