@@ -24,11 +24,11 @@ bot.invite = "https://discord.gg/qEFNkxB"
 // Gather commands
 bot.commands = new discord.Collection();
 
-require('fs').readdir("./commands/", (err, files) => {
+require('fs').readdir("../commands/", (err, files) => {
   console.log("Loading commands...");
   if (err) return console.log(`Command loading failed!`);
   files.filter(f => f.split(".").pop() === "js").forEach((f, i) => {
-    bot.commands.set(require(`./commands/${f}`).help.name, require(`./commands/${f}`));
+    bot.commands.set(require(`../commands/${f}`).help.name, require(`../commands/${f}`));
   });
 });
 
@@ -103,13 +103,13 @@ bot.on("message", message => {
  });
       
 bot.on("guildCreate", (guild) => {
-  require('./events/guildCreate.js')(bot, guild, discord)
+  require('../events/guildCreate.js')(bot, guild, discord)
   baselogger(bot, `**Guild Join**\n\n**Guild:** ${guild.name}\n**Owner:** ${guild.owner.user.username}\n**Large:** ${guild.large}\n**Member Count:** ${guild.memberCount}\n\n**Total Guilds:** ${bot.guilds.array().length}`, guild.iconURL);
 });
 
 bot.on("guildDelete", (guild) => {
   // require('./mysql2.js')(bot, guild)
-  require('./events/guildDelete.js')(bot, guild, discord)
+  require('../events/guildDelete.js')(bot, guild, discord)
   baselogger(bot, `**Guild Leave**\n\n**Guild:** ${guild.name}\n**Owner:** ${guild.owner.user.username}\n**Large:** ${guild.large}\n**Member Count:** ${guild.memberCount}\n\n**Total Guilds:** ${bot.guilds.array().length}`, guild.iconURL);
 });
 
