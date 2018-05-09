@@ -33,9 +33,9 @@ require('fs').readdir("../commands/", (err, files) => {
 });
 
 bot.on("ready", () => {
-  require('./events/vote.js')(bot)
-  require('./util/poststats.js')(bot)
-  require('./util/consoles.js')(bot, config)
+  require('../events/vote.js')(bot)
+  require('../util/poststats.js')(bot)
+  require('../util/consoles.js')(bot, config)
   bot.user.setActivity("Loading Hulkbot...", {type: "STREAMING", url: "https://twitch.tv/freakinghulk"})
   
   setTimeout(() => {
@@ -53,9 +53,9 @@ bot.on('error', err => {
     })
   })
 })
-bot.on("guildMemberAdd", (member) => require('./events/guildMemberAdd.js')(bot, member))
-bot.on("guildMemberRemove", (member) => require('./events/guildMemberRemove.js')(bot, member))
-bot.on("guildBanAdd", (guild, member) => require('./events/BanAdd.js')(bot, guild, member))
+bot.on("guildMemberAdd", (member) => require('../events/guildMemberAdd.js')(bot, member))
+bot.on("guildMemberRemove", (member) => require('../events/guildMemberRemove.js')(bot, member))
+bot.on("guildBanAdd", (guild, member) => require('../events/BanAdd.js')(bot, guild, member))
 //bot.on("guildBanRemove", (guild, member) => require('./events/BanRemove.js')(bot, guild, member))
  
 bot.on("message", message => {
@@ -73,9 +73,7 @@ bot.on("message", message => {
   if (cmd) {
       if (config.userblacklist.includes(message.author.id)) return;
       message.channel.startTyping();
-    setTimeout(() => {
         cmd.run(bot, message, args, discord);  
-    }, ms("3s"))
       message.channel.stopTyping();
         console.log(`${message.author.username} used the ${loggedcmd} command.`);
         if (message.guild.id == "427846834225020928") {
