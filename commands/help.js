@@ -7,7 +7,7 @@ module.exports.run = (bot, message, args, discord) => {
 	let msg = args.join(" ")
 	let em = new discord.RichEmbed()
 	.setTitle("Help Menu")
-	.setFooter(`Requested by ${message.author.username}.`)
+	.setFooter(`New help menu! If you like it, let me know with h!contact.`)
 	.setColor("RANDOM")
 	
 	if (msg == categories[4]) {
