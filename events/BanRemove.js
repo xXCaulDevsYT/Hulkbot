@@ -1,18 +1,17 @@
 const discord = require('discord.js')
-
+const names = ["bot-logs", "log", "hulkbot-log"]
 module.exports = (bot, guild, member) => {
-  member.send(`${member.user.username}, you have now been unbanned from ${guild.name}!`)
-  let channel = guild.channels.find('name', 'guild-bot-log')
-  if (!channel) {
-    console.warn(`Guild ${guild.name} has no log channel, canceling send.`);
-  } else {
-    let embed = new discord.RichEmbed()
-      .setTitle("Hulkbot Logger")
-      .setDescription(`${member.user.username} was just unbanned from ${guild.name}`)
-      .setTimestamp()
-      .setColor("BLUE")
+  guild.channels.forEach(channel => {
+    if (channel.topic.toLowercase().includes("bot log") || channel.name == names[0] || channel.name == names[1] || channel.name == names[2]) {
+      const logchannel = channel
+      const embed = new discord.RichEmbed()
+      .setTitle("Hulkbot Ban Logger")
       .setThumbnail(member.user.avatarURL)
-      .setFooter(`${member.user.username} unbanned`)
-      channel.send({embed: embed})
-  }
+      .setDescription(`${member.user.username} was unbanned from the server.`)
+      .setFooter(`${member.user.username} unbanned from server.`)
+      logchannel.send({embed: embed})
+    } else {
+      console.warn("No log channel, canceling.")
+    }
+  })
 }
