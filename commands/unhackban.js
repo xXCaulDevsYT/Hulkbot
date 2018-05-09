@@ -1,6 +1,6 @@
 module.exports.run = (bot, message, args, discord) => {
   let id = args.join(' ');
-  if (!message.member.hasPermission()) return message.channel.send(`You don't have permission to use this command.`);
+  if (!message.member.hasPermission(["BAN_MEMBERS"], false, true, true)) return message.channel.send(`You don't have permission to use this command.`);
   let member = bot.fetchUser(id)
   .then(user => {
     message.guild.unban(user.id)
