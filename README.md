@@ -22,6 +22,7 @@ My Discord Bot.
 - [x] Add permissions to certain commands.
     - [ ] Make permissions alittle more advanced.
 - [x] Fix borking
+    - [x] Clean up the root directory.
 
 ## Support and Info
    Find the support server [here](https://discord.gg/qEFNkxB "Click to join the invite server")
