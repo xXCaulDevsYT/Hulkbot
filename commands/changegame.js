@@ -1,4 +1,3 @@
-const config = require('../config.json')
 const oid = process.env.oid
 
 module.exports.run = (bot, message, args, discord) => {
