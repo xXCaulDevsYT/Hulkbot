@@ -2,7 +2,7 @@
 "name": "Hulkbot",
 "version": "2.0.0",
 "description": "Utility, music, etc",
-"main": "bot.js",
+"main": "/src/bot.js",
 "author": "FHGDev",
 "license": "MIT",
 "scripts": {
