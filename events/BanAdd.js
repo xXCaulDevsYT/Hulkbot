@@ -1,27 +1,22 @@
 const discord = require('discord.js')
-
+const banreason = require('../json/config.json').banreason
+const names = ["bot-logs", "log", "hulkbot-log"]
 module.exports = (bot, guild, member) => {
-  let reason = require('../json/config.json').banreason
-  if (reason) {
-  console.log(`${member.username} was banned from ${guild.name} for ${reason}!`)
-  member.send(`${member.username}, you are now banned from ${guild.name} for the reason ${reason}!`)
-  } else {
-    console.log(`${member.username} was banned from ${guild.name}.`)
-    member.send(`${member.username}, you are now banned from ${guild.name}!`)
-  }
-  let log = guild.channels.find('name', 'guild-bot-log')
-  let embed = new discord.RichEmbed()
-  .setTitle("Log")
-  if (reason) {
-  embed.setDescription(`${member.username} was banned from ${guild.name} for the reason ${reason}!`)
-  } else {
-    embed.setDescription(`${member.username} was banned from ${guild.name}!`)
-  }
-  embed.setThumbnail(member.avatarURL)
-  embed.setColor("RED")
-  embed.setFooter(`${member.username} was banned`)
-  embed.setTimestamp()
-  if (log) {
-    log.send({embed: embed})
-  } else return console.warn(`Guild ${guild.name} has no log channel, canceling send.`);
+  guild.channels.forEach(channel => {
+    if (channel.topic.toLowercase().includes("bot log") || channel.name == names[0] || channel.name == names[1] || channel.name == names[2]) {
+      const logchannel = channel
+      const embed = new discord.RichEmbed()
+      .setTitle("Hulkbot Ban Logger")
+      .setThumbnail(member.user.avatarURL)
+      .setDescription(`${member.user.username} was banned from the server for reason ${banreason}.`)
+      .setFooter(`${member.user.username} banned from server.`)
+      logchannel.send({embed: embed})
+      if (banreason == "") {
+          embed.setDescription(`${member.user.username} was banned from the server.`)
+          logchannel.send({embed: embed})
+      }
+    } else {
+      console.warn("No log channel, canceling.")
+    }
+  })
 }
