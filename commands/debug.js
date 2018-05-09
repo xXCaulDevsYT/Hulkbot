@@ -1,5 +1,5 @@
 const pak = require("../package.json")
-const config = require("../config.json")
+const config = require("../json/config.json")
 //🔎 👤 ⚙ 🆔 📄 📝 ⌛ 🖍 🔊 📬 🚀
 
 
