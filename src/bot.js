@@ -1,10 +1,10 @@
 // init ;p
 const time = Date(),
 stitch = require("mongodb-stitch"),
-pak = require('./package.json'),
+pak = require('../package.json'),
 discord = require('discord.js'),
 config = require('./config.json'),
-profanities = require("./profanities.json"),
+profanities = require("../profanities.json"),
 bot = new discord.Client(),
 prefix = process.env.prefix,
 {baselogger} = require('./logger.js'),
