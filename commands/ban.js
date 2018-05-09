@@ -1,5 +1,5 @@
 const fs = require('fs')
-const config = require('../config.json')
+const config = require('../json/config.json')
 
 module.exports.run = (bot, message, args, discord) => {
     if (!message.member.hasPermission(["BAN_MEMBERS"])) return message.channel.send("You don't have permission to ban people. If there's someone who needs to be banned, contact an administrator or a moderator.")
