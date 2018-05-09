@@ -1,5 +1,5 @@
 const discord = require('discord.js')
-const names = ["bot-logs", "log", "hulkbot-log"]
+const names = ["bot-logs", "log", "hulkbot-log", "bot-hell"]
 module.exports = (bot, guild, member) => {
   guild.channels.forEach(channel => {
     if (channel.topic.toLowercase().includes("bot log") || channel.name == names[0] || channel.name == names[1] || channel.name == names[2]) {
