@@ -33,7 +33,6 @@ require('fs').readdir("./commands/", (err, files) => {
 });
 
 bot.on("ready", () => {
-  require('./events/vote.js')(bot)
   require('./util/poststats.js')(bot)
   require('./util/consoles.js')(bot, config)
   bot.user.setActivity("Loading Hulkbot...", {type: "STREAMING", url: "https://twitch.tv/freakinghulk"})
@@ -46,7 +45,7 @@ bot.on("ready", () => {
     console.log(`[SERVER] [${guild.memberCount}] ${guild.name} (${guild.id}) | Joined: ${guild.joinedAt.toString()}\n`)
   });
 });
-bot.on('error', err => {
+bot.on('error', (err) => {
   console.error(`Error... ${err}`).then(() => {
     bot.destroy().then(() => {
       bot.login(process.env.botToken)
@@ -82,14 +81,10 @@ bot.on("message", message => {
         baselogger(bot, `**Command Run**\n\n**Command:** ${loggedcmd}\n**User:** ${message.author.tag}\n**Message:** ${message.content}\n**Guild:** ${message.guild.name}\n**Channel:** ${message.channel.name}`);
     }
   } 
-});
-
-bot.on("message", message => {
-  if (message.author.bot) return;
     if (message.content.toLowerCase().includes("i love you hulkbot")) {
     message.channel.send("oh god, not another one");
   }
-  if (message.content.includes(`<@294194506113220608>`)) {
+  if (message.content == "<@294194506113220608>") {
       let embed = new discord.RichEmbed()
       .setTitle("Hulkbot for Beginners")
       .setDescription("YUP! It's me, Hulkbot! To see more info on me, use the info command. (h!info)")
