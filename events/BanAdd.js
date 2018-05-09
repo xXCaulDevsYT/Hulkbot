@@ -7,7 +7,6 @@ module.exports = (bot, guild, member) => {
       const logchannel = channel
       const embed = new discord.RichEmbed()
       .setTitle("Hulkbot Ban Logger")
-      .setThumbnail(member.user.avatarURL)
       .setDescription(`${member.user.username} was banned from the server for reason ${banreason}.`)
       .setFooter(`${member.user.username} banned from server.`)
       logchannel.send({embed: embed})
