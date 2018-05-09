@@ -1,7 +1,7 @@
 const discord = require('discord.js')
 
 module.exports = (bot, guild, member) => {
-  let reason = require('../config.json').banreason
+  let reason = require('../json/config.json').banreason
   if (reason) {
   console.log(`${member.username} was banned from ${guild.name} for ${reason}!`)
   member.send(`${member.username}, you are now banned from ${guild.name} for the reason ${reason}!`)
