@@ -1,4 +1,4 @@
-const code = require("../codes.json").codes
+const code = require("../json/redeem/codes.json").codes
 
 module.exports.run = (bot, message, args, discord) => {
   let msg = args.join(" ")
