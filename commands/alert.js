@@ -2,7 +2,7 @@ module.exports.run = (bot, message, args) => {
 let msg = args.join(" ");
 if (message.author.id !== message.guild.ownerid) {
   message.guild.members.forEach(member => {
-    if (member.hasPermission("ADMINISTRATOR") || member.hasPermission("MANAGE_SERVER")) {
+    if (member.hasPermission("ADMINISTRATOR") || member.hasPermission("MANAGE_GUILD")) {
       message.channel.send("Alerting admins...")
       if (!msg) {
         member.send(`${message.member.user.username} is calling for you in server ${message.guild.name}.`)
