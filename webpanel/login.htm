@@ -19,6 +19,9 @@ function authPass(u,p) {
 <!--
 if (location.search.indexOf("auth=failed") != -1) {
 	document.write("<span style=\"color:#ff0000\">Authorization Failed!</span>");
+} else {
+	if (location.search.indexOf("logout=true") != -1) {
+		document.write(`<span style="color: brightgreen">Logout Successful!</span>`)
 }
 // -->
 </script>
