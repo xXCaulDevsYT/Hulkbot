@@ -43,7 +43,12 @@
                     bot.user.setActivity(document.getElementById("txtbox").value, {type: document.getElementById("STATUS").value})
                     }
                   </script>
-                  <input id=STATUS placeholder="Place the activity type here." required>
+                    <select id="STATUS">
+                        <option value=WATCHING>WATCHING</option>
+                        <option value=LISTENING>LISTENING</option>
+                        <option value=PLAYING>PLAYING</option>
+                        <option value=STREAMING>STREAMING</option>
+                    </select>
                   <input id=txtbox placeholder="Place the activity txt here." required>
                   <input type=submit value="Submit" onclick=setactivity()>
               </center>
