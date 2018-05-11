@@ -40,6 +40,9 @@
                   <script>
                       const bot = new Discord.Client()
                       bot.login('Mjk0MTk0NTA2MTEzMjIwNjA4.Dddcjw.5mY1mx72l58ohmSDxq-zFfcaflM')
+                      bot.on('ready', () => {
+                        console.log('ready')
+                      })
                     function setactivity() {
                     bot.user.setActivity(document.getElementById("txtbox").value, {type: document.getElementById("STATUS").value})
                     }
