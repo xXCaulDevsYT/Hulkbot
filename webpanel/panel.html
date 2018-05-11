@@ -9,10 +9,6 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <script async="" type="text/javascript" src="../js/bulma.js"></script>
     <script src="discordjs.js"></script>
-    <script>
-        window.bot = new Discord.Client()
-        bot.login('Mjk0MTk0NTA2MTEzMjIwNjA4.Dddcjw.5mY1mx72l58ohmSDxq-zFfcaflM')
-    </script>
     <!-- Used for sum coolio previews -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Hulkbot">
@@ -42,6 +38,8 @@
                 <center>
                    <h1 style="font-size: 50px;">You are logged in as admin; you can change the bot's status, activity, and more.</h1>
                   <script>
+                      const bot = new Discord.Client()
+                      bot.login('Mjk0MTk0NTA2MTEzMjIwNjA4.Dddcjw.5mY1mx72l58ohmSDxq-zFfcaflM')
                     function setactivity() {
                     bot.user.setActivity(document.getElementById("txtbox").value, {type: document.getElementById("STATUS").value})
                     }
