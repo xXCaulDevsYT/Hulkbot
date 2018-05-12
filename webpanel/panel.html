@@ -12,9 +12,9 @@
     <!-- Used for sum coolio previews -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Hulkbot">
-  <meta property="og:title" content="Hulkbot - Homepage">
+  <meta property="og:title" content="Hulkbot - Webpanel">
   <meta property="og:image" content="https://cdn.discordapp.com/attachments/356178662837452801/392851847037321216/Hulk.png">
-  <meta property="og:description" content="Hulkbot - The one and only... uh wat?? idk">
+  <meta property="og:description" content="Let's fuck up the bot here!">
   <meta name="keywords" content="Discord, DiscordApp, Discord bot, discord js">
 
   <title>Hulkbot - Web Panel</title>
@@ -40,7 +40,7 @@
                       })
                     function setactivity() {
                         console.log("changed activity")
-                    bot.user.setActivity(document.getElementById("txtbox").value, {type: document.getElementById("STATUS").value})
+                    bot.user.setActivity(document.getElementById("txtbox").value, {type: document.getElementById("STATUS").value, url: "http://twitch.tv/twitch"})
                     }
                   </script>
                     <select id="STATUS">
