@@ -22,6 +22,7 @@ My Discord Bot.
     - [ ] Make permissions alittle more advanced.
 - [x] Fix borking
 - [x] Clean up the root directory.
+- [ ] Clear up errors in the [dashboard](https://hulkbot.cf)
 
 ## Support and Info
    Find the support server [here](https://discord.gg/qEFNkxB)
