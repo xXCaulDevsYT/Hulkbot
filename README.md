@@ -5,7 +5,7 @@ My Discord Bot.
 
 [![Homepage](https://img.shields.io/badge/M-Homepage-7289DA.svg?style=flat-square)](https://bot.hulkbot.ml/home)
 [![Support](https://img.shields.io/badge/M-Support-7289DA.svg?style=flat-square)](https://discord.gg/qEFNkxB)
-[![Patreon](https://img.shields.io/badge/M-patreon-7289DA.svg?style=flat-square)](https://patreon.com/fhg)
+[![Patreon](https://img.shields.io/badge/M-Patreon-7289DA.svg?style=flat-square)](https://patreon.com/fhg)
 [![Version](https://img.shields.io/badge/V-2.5.1-green.svg?style=flat-square)](https://github.com/FHGDev/JSHulkbot/releases)
 [![Status](https://img.shields.io/badge/S-Ready-green.svg?style=flat-square)]()
 [![GitHub Stars](https://img.shields.io/github/Stars/FHGDev/JSHulkbot.svg?style=flat-square)](https://github.com/FHGDev/JSHulkbot/stargazers)
