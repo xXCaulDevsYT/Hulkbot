@@ -26,7 +26,7 @@ My Discord Bot.
    Find the support server [here](https://discord.gg/qEFNkxB)
    
 ## Downloadable
-    The downloadable version can be found [here](https://github.com/FHGDev/Hulkbot/tree/downloadable) and the instructions to use it in the [README.md](https://github.com/FHGDev/Hulkbot/blob/downloadable/README.md) file
+   The downloadable version can be found [here](https://github.com/FHGDev/Hulkbot/tree/downloadable) and the instructions to use it in the [README.md](https://github.com/FHGDev/Hulkbot/blob/downloadable/README.md) file
 
 ## Discord Bots.org Status
 [![Discord Bots](https://discordbots.org/api/widget/294194506113220608.svg)](https://discordbots.org/bot/294194506113220608)
