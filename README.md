@@ -12,8 +12,6 @@ My Discord Bot.
 [![GitHub borks](https://img.shields.io/github/forks/FHGDev/JSHulkbot.svg?style=flat-square)](https://github.com/FHGDev/JSHulkbot/network)
 [![GitHub issues](https://img.shields.io/github/issues/FHGDev/JSHulkbot.svg?style=flat-square)](https://github.com/FHGDev/JSHulkbot/issues)
 [![Homepage](https://img.shields.io/badge/bot-homepage-F96854.svg?style=flat-square)](https://bot.hulkbot.ml/home "Go to Hulkbot Homepage")
-<a href=https://dashboard.heroku.com/apps/jshulkbot/logs target=_blank>
-
 # Todo
 
 - [x] Clean up the code a bit.
@@ -22,10 +20,10 @@ My Discord Bot.
 - [x] Add permissions to certain commands.
     - [ ] Make permissions alittle more advanced.
 - [x] Fix borking
-    - [x] Clean up the root directory.
+- [x] Clean up the root directory.
 
 ## Support and Info
-   Find the support server [here](https://discord.gg/qEFNkxB "Click to join the invite server")
+   Find the support server [here](https://discord.gg/qEFNkxB)
 
 ## Discord Bots.org
 
