@@ -3,15 +3,15 @@ My Discord Bot.
 
 ## You need [NodeJS](https://nodejs.org/en/ "Get NodeJS") and [Discord.js](https://discord.js.org/ "Get Discord.js") to be able to run dis bot.
 
-[![Homepage](https://img.shields.io/badge/M-Homepage-F96854.svg?style=flat-square)](https://bot.hulkbot.ml/home)
+[![Homepage](https://img.shields.io/badge/M-Homepage-7289DA.svg?style=flat-square)](https://bot.hulkbot.ml/home)
 [![Support](https://img.shields.io/badge/M-Support-7289DA.svg?style=flat-square)](https://discord.gg/qEFNkxB)
 [![Patreon](https://img.shields.io/badge/M-patreon-7289DA.svg?style=flat-square)](https://patreon.com/fhg)
 [![Version](https://img.shields.io/badge/V-2.5.1-green.svg?style=flat-square)](https://github.com/FHGDev/JSHulkbot/releases)
-[![Status](https://img.shields.io/badge/Status-Ready-green.svg?style=flat-square)]()
-[![GitHub stars](https://img.shields.io/github/stars/FHGDev/JSHulkbot.svg?style=flat-square)](https://github.com/FHGDev/JSHulkbot/stargazers)
-[![GitHub license](https://img.shields.io/github/license/FHGDev/JSHulkbot.svg?style=flat-square)](https://github.com/FHGDev/JSHulkbot/blob/master/LICENSE)
-[![GitHub borks](https://img.shields.io/github/forks/FHGDev/JSHulkbot.svg?style=flat-square)](https://github.com/FHGDev/JSHulkbot/network)
-[![GitHub issues](https://img.shields.io/github/issues/FHGDev/JSHulkbot.svg?style=flat-square)](https://github.com/FHGDev/JSHulkbot/issues)
+[![Status](https://img.shields.io/badge/S-Ready-green.svg?style=flat-square)]()
+[![GitHub Stars](https://img.shields.io/github/Stars/FHGDev/JSHulkbot.svg?style=flat-square)](https://github.com/FHGDev/JSHulkbot/stargazers)
+[![GitHub license](https://img.shields.io/github/License/FHGDev/JSHulkbot.svg?style=flat-square)](https://github.com/FHGDev/JSHulkbot/blob/master/LICENSE)
+[![GitHub borks](https://img.shields.io/github/Forks/FHGDev/JSHulkbot.svg?style=flat-square)](https://github.com/FHGDev/JSHulkbot/network)
+[![GitHub issues](https://img.shields.io/github/Issues/FHGDev/JSHulkbot.svg?style=flat-square)](https://github.com/FHGDev/JSHulkbot/issues)
 
 ## Todo
 
