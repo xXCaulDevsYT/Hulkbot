@@ -1,2 +1,2 @@
 auth = true;
-redirect = "panel.html";
+redirect = "panel.html?admin";
