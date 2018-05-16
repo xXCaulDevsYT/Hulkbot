@@ -72,7 +72,7 @@
   return obj;
 }
     const admin = getAllUrlParams().admin
-    if (!admin) {
+    if (admin !== "true") {
         document.location.href="http://hulkbot.cf/webpanel/login.html?auth=failed"
     } else {
         console.log("Authenticated.")
@@ -84,7 +84,7 @@
   <meta property="og:title" content="Hulkbot - Web Panel">
   <meta property="og:image" content="https://cdn.discordapp.com/attachments/356178662837452801/392851847037321216/Hulk.png">
   <meta property="og:description" content="Hulkbot Web Panel">
-  <meta name="keywords" content="Discord, DiscordApp, Discord bot, discord js">
+  <meta name="keywords" content="Discord, DiscordApp, Discord bot, discord.js">
 
   <title>Hulkbot - Web Panel</title>
   <link rel="shortcut icon" href="https://cdn.discordapp.com/attachments/356178662837452801/392851847037321216/Hulk.png"></div>
@@ -107,9 +107,9 @@
                       bot.on('ready', () => {
                         console.log('Ready.');
                       })
-                    function setactivity() {
-                        console.log("changed activity")
-                    bot.user.setActivity(document.getElementById("txtbox").value, {type: document.getElementById("STATUS").value, url: "https://www.twitch.tv/twitch"})
+                    function setactivity(game, type) {
+                        console.log(`Changed activity to ${type} ${game}`)
+                    bot.user.setActivity(game, {type: type, url: "https://www.twitch.tv/freakinghulk"})
                     }
                   </script>
                     <select id="STATUS">
@@ -119,8 +119,9 @@
                         <option value=STREAMING>STREAMING</option>
                     </select>
                   <input id=txtbox placeholder="Place the activity txt here." required>
-                  <input type=submit value="Submit" onclick=setactivity()>
-              </center>
+                  <input type=submit value="Submit" onclick="setactivity(document.getElementById('txtbox').value, document.getElementById('STATUS').value)">
+                  <input type=button value="Change to normal" onclick="setactivity(`for h!help | ${bot.guilds.size} servers`, {type: 'WATCHING'})">
+                </center>
             </article>
         </div>
     </div>
