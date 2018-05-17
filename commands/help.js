@@ -10,7 +10,7 @@ module.exports.run = (bot, message, args, discord) => {
 	.setFooter(`New help menu! If you like it, let me know with h!contact.`)
 	.setColor("RANDOM")
 	
-	if (msg == categories[4].toLowerCase()) {
+	if (msg == categories[4].toLowerCase() || msg == categories[4]) {
 		em
 		.setTitle(":heavy_plus_sign: More help")
 		.setDescription("For more help, check out the [command docs](https://gist.github.com/FHGDev/67ed143f693a6424cc4ef7ce9ca3c796)!")
@@ -19,7 +19,7 @@ module.exports.run = (bot, message, args, discord) => {
 		message.channel.send({embed: em})
 	}
 	
-	if (msg == categories[2].toLowerCase()) {
+	if (msg == categories[2].toLowerCase() || msg == categories[2]) {
 		em
 		.setTitle(":lollipop: Fun")
 		.setDescription("Let's get some fun going in this boring place!")
@@ -27,7 +27,7 @@ module.exports.run = (bot, message, args, discord) => {
 		
 		message.channel.send({embed: em})
 	}
-	if (msg == categories[1].toLowerCase()) {
+	if (msg == categories[1].toLowerCase() || msg == categories[1]) {
 		em
 		.setTitle("Moderation :hammer_pick:")
 		.setDescription("Let me handle the bad bois... Hehe.")
@@ -35,7 +35,7 @@ module.exports.run = (bot, message, args, discord) => {
 		
 		message.channel.send({embed: em})
 	}
-	if (msg == categories[0].toLowerCase()) {
+	if (msg == categories[0].toLowerCase() || msg == categories[0]) {
 		em
 		.setTitle("Bot :robot:")
 		.setDescription(`Get to kno da wae... UMMM I mean the bot.`)
@@ -43,7 +43,7 @@ module.exports.run = (bot, message, args, discord) => {
 		
 		message.channel.send({embed: em})
 	}
-	if (msg == categories[5].toLowerCase()) {
+	if (msg == categories[5].toLowerCase() || msg == categories[5]) {
 		em
 		.setTitle("NSFW :underage:")
 		.setDescription(`These commands are *not* for children!`)
