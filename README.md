@@ -30,8 +30,6 @@ My Discord Bot.
 
 ## Discord Bots.org Status
 [![Discord Bots](https://discordbots.org/api/widget/294194506113220608.svg)](https://discordbots.org/bot/294194506113220608)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FFHGDev%2FHulkbot.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FFHGDev%2FHulkbot?ref=badge_shield)
-
 
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FFHGDev%2FHulkbot.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FFHGDev%2FHulkbot?ref=badge_large)
