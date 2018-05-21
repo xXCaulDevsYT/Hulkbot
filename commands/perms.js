@@ -10,17 +10,18 @@ module.exports.run = (bot, message, args, discord) => {
     .setFooter(`Requested by ${message.author.username}.`)
     .setColor("RANDOM")
     message.author.send({embed: em})
-  }
-  if (admins.includes(message.author.id)) {
-    let em = new discord.RichEmbed()
-    .setTitle("Hulkbot Perms")
-    .setDescription("Your user ID is in the admin list, you have admin permissions.")
-    .setTimestamp()
-    .setFooter(`Requested by ${message.author.username}.`)
-    .setColor("RANDOM")
-    message.author.send({embed: em})
   } else {
-    message.author.send("You are a standard user.")
+    if (admins.includes(message.author.id)) {
+      let em = new discord.RichEmbed()
+      .setTitle("Hulkbot Perms")
+      .setDescription("Your user ID is in the admin list, you have admin permissions.")
+      .setTimestamp()
+      .setFooter(`Requested by ${message.author.username}.`)
+      .setColor("RANDOM")
+      message.author.send({embed: em})
+    } else {
+      message.author.send("You are a standard user.")
+    }
   }
 }
 
