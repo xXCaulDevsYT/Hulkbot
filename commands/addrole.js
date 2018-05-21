@@ -10,10 +10,14 @@ module.exports.run = (bot, message, args, discord) => {
   member.addRole(role.id);
   let em = new discord.RichEmbed()
   .setTitle("Hulkbot Addrole")
-  .setDescription(`Okay! I added the role ${rolename} to the user ${member.username}.`)
+  .setDescription(`Okay! I added the role ${rolename} to the user ${member.user.username}.`)
   .setTimestamp()
   .setFooter(`${message.author.username} added role ${rolename} to user ${member.user.username}.`)
   message.channel.send({embed: em})
+  if (member.displayName) {
+    em.setDescription(`Okay! I added the role ${rolename} to the user ${member.displayName}.`)
+    em.setFooter(`${message.author.username} added role ${rolename} to user ${member.displayName}.`)
+  }
 };
 
 module.exports.help = {
