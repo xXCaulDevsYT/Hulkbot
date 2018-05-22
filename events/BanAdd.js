@@ -9,6 +9,8 @@ module.exports = (bot, guild, member) => {
       .setTitle("Hulkbot Ban Logger")
       .setDescription(`${member.user.username} was banned from the server for reason ${banreason}.`)
       .setFooter(`${member.user.username} banned from server.`)
+      .setTimestamp()
+      .setColor("RED")
       logchannel.send({embed: embed})
       if (banreason == "") {
           embed.setDescription(`${member.user.username} was banned from the server.`)
