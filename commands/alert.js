@@ -5,7 +5,7 @@ if (message.author.id == message.guild.ownerID) {
   message.guild.members.forEach(member => {
     if (member.hasPermission("ADMINISTRATOR") || member.hasPermission("MANAGE_GUILD")) {
       if (!msg) {
-        member.send(`${message.member.user.username} is calling for you in server ${message.guild.name}.`)
+        member.send(`${message.author.username} is calling for you in server ${message.guild.name}.`)
         message.channel.send(`Alerted ${member.user.username}.`)
       } else {
         member.send(`${message.author.username} is calling for you in server ${message.guild.name}. Message: ${msg}`)
