@@ -3,7 +3,7 @@ const banreason = require('../json/config.json').banreason
 const names = ["bot-logs", "log", "hulkbot-log", "bot-hell"]
 module.exports = (bot, guild, member) => {
   guild.channels.forEach(channel => {
-    if (channel.topic == "bot log") || channel.name == names[0] || channel.name == names[1] || channel.name == names[2] || channel.name == names[3]) {
+    if (channel.topic.includes("bot log") || channel.name == names[0] || channel.name == names[1] || channel.name == names[2] || channel.name == names[3]) {
       const logchannel = channel
       const embed = new discord.RichEmbed()
       .setTitle("Hulkbot Ban Logger")
