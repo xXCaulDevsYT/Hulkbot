@@ -1,6 +1,6 @@
 module.exports.run = (bot, message, args) => {
 let msg = args.join(" ");
-if (message.author.id == message.guild.ownerid) {
+if (message.author.id == message.guild.ownerID) {
    message.channel.send("Alerting admins...")
   message.guild.members.forEach(member => {
     if (member.hasPermission("ADMINISTRATOR") || member.hasPermission("MANAGE_GUILD")) {
