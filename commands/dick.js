@@ -13,6 +13,8 @@ module.exports.run = (bot, message, args, discord) => {
     "dong", 
     "plonker"
   ]
+  
+  if (!message.channel.nsfw) return message.channel.send("You need to be in an NSFW channel to use this command.");
   let result = keys[Math.floor(Math.random()*keys.length)]
   
   search(result).then(url => {
