@@ -1,2 +1,2 @@
 auth=true
-redirect="panel2.js?user"
+redirect="panel2.html?user"
