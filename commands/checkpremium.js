@@ -3,10 +3,10 @@ const config = require('../json/config.json')
 
 module.exports.run = (bot, message, args, discord) => {
     function notfree() {
-    let ga = bot.guilds.get('356178662837452800')
+    let ga = bot.guilds.get('441074979623141388')
     let member = message.author
     if (message.member == message.guild.owner) {
-    if (ga.members.get(member.id).roles.find('name','SuperPatron')) {
+    if (ga.members.get(member.id).roles.find('name','Donator')) {
         
             let em = new discord.RichEmbed()
             .setTitle(":money_mouth: Hulkbot Premium :money_mouth:")
@@ -18,7 +18,7 @@ module.exports.run = (bot, message, args, discord) => {
     } else {
         let em = new discord.RichEmbed()
         .setTitle(":money_mouth: Hulkbot Premium :money_mouth:")
-        .setDescription(`:thumbsdown: Your premium status is unactive. Buy premium [here!](https://www.patreon.com/bePatron?c=1365207 "buy premium") :thumbsdown:`)
+        .setDescription(`:thumbsdown: Your premium status is unactive. Buy premium [here!](https://www.paypal.com/caulden/1 "buy premium") :thumbsdown:`)
         .setThumbnail(bot.user.avatarURL)
         .setColor("RED")
         .setTimestamp()
@@ -27,7 +27,7 @@ module.exports.run = (bot, message, args, discord) => {
   } else {
       let em = new discord.RichEmbed()
       .setTitle("Failure! :face_palm:")
-      .setDescription("You need to be the owner of this guild to use this command.")
+      .setDescription("You Have Insufficient Permisions To Run the Current Command.")
       .setThumbnail(bot.user.avatarURL)
       .setColor("RED")
       .setTimestamp()
